@@ -82,6 +82,17 @@ class LegacyAuditTests(unittest.TestCase):
             for heading in headings:
                 self.assertIn(heading, lesson)
 
+    def test_lesson_one_ordering_examples_are_independent(self):
+        root = Path(__file__).resolve().parent.parent
+        lesson = (root / "lesson-01" / "lesson.md").read_text(encoding="utf-8")
+        self.assertIn("```sql\nSELECT Name\nFROM   Artist\nORDER  BY Name;", lesson)
+        self.assertIn("```sql\nSELECT Name\nFROM   Artist\nORDER  BY Name DESC;", lesson)
+        self.assertNotIn(
+            "ORDER  BY Name;            -- default: A → Z (ASC = ascending)\n"
+            "ORDER  BY Name DESC;",
+            lesson,
+        )
+
     def test_lessons_05_and_06_use_detailed_readme_labels(self):
         root = Path(__file__).resolve().parent.parent
         labels = (
