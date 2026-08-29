@@ -5,13 +5,13 @@ an artist with their albums and tracks, an employee with their manager — and
 you'll understand *why* a join sometimes quietly multiplies (or loses) your
 rows, so your totals stay right.
 
-**Prerequisite:** Lesson 04 (aggregation) — joins and `SUM`/`COUNT` collide,
-and that collision is half this lesson.
+**You need from before:** Lesson 04 (aggregation) — joins and `SUM`/`COUNT`
+collide, and that collision is half this lesson.
 
-**Files:** `lesson.md` (everything, including the quiz) · `answers.md`
-(quiz + your-turn answers)
+**Keywords this lesson:** `INNER JOIN`, `LEFT JOIN`, `ON`, primary key,
+foreign key, self join, fan-out
 
-**Keywords:** `INNER JOIN`, `LEFT JOIN`, `ON`, primary key, foreign key,
-self join, fan-out
+**Files in this folder:** [lesson.md](lesson.md) (everything, including the
+quiz) · [answers.md](answers.md) (quiz + your-turn answers)
 
 **No scratch copy needed** — this lesson only reads.

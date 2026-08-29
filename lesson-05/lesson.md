@@ -440,7 +440,7 @@ Answer without scrolling up. The key is in `answers.md`.
 - **Fan-out:** a one-to-many join repeats the one-side row; never aggregate
   a one-side column across such a join without care.
 
-**Next up — Lesson 06 (Joins II & set operations):** what about `FULL`
-joins and `CROSS` joins, and how do you *combine* the results of two queries
-with `UNION`, `INTERSECT`, and `EXCEPT`? Lesson 06 finishes the join family
-and adds the set tools.
+## 7. Look ahead
+
+Lesson 06 finishes the join family with `FULL` and `CROSS JOIN`, then adds
+set operators—`UNION`, `INTERSECT`, and `EXCEPT`—for combining query results.

@@ -366,8 +366,8 @@ Answer without scrolling up. The key is in `answers.md`.
 - `COUNT(DISTINCT col)` counts unique values.
 - `GROUP BY` doesn't order; add `ORDER BY`.
 
-**Next up — Lesson 05 (Joins, Part I):** so far we've only looked at one
-table at a time. The catalog is really 11 interlocking tables, and the
-questions that matter ("which tracks are on the *Rock Classics* album, and
-who wrote the *album*?") need **joins** to pull related rows from several
-tables into one result. That's the next big idea.
+## 7. Look ahead
+
+Lesson 05 introduces **joins**: the catalog is really 11 interlocking tables,
+and questions such as "which tracks are on the *Rock Classics* album, and who
+wrote the *album*?" need related rows pulled into one result.

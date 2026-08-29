@@ -81,6 +81,25 @@ class LegacyAuditTests(unittest.TestCase):
             for heading in headings:
                 self.assertIn(heading, lesson)
 
+    def test_lessons_05_and_06_use_detailed_readme_labels(self):
+        root = Path(__file__).resolve().parent.parent
+        labels = (
+            "**Promise:**",
+            "**You need from before:**",
+            "**Keywords this lesson:**",
+            "**Files in this folder:**",
+        )
+        for number in ("05", "06"):
+            readme = (root / f"lesson-{number}" / "README.md").read_text(encoding="utf-8")
+            for label in labels:
+                self.assertIn(label, readme)
+
+    def test_lessons_01_to_06_have_seven_major_sections(self):
+        root = Path(__file__).resolve().parent.parent
+        for number in ("01", "02", "03", "04", "05", "06"):
+            lesson = (root / f"lesson-{number}" / "lesson.md").read_text(encoding="utf-8")
+            self.assertIn("## 7. Look ahead", lesson)
+
 
 if __name__ == "__main__":
     unittest.main()

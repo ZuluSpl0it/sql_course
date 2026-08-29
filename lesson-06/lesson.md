@@ -552,5 +552,7 @@ the scratch copy is not needed. Answers in `answers.md`.
 - `A EXCEPT B → 0` proves `A ⊆ B`; both directions → 0 proves `A = B`.
   A small, sharp toolkit for data-quality checks.
 
-Next up, **Lesson 07: Subqueries & CTEs** — the moment you start putting a
-query *inside* another query.
+## 7. Look ahead
+
+Lesson 07 introduces **subqueries and CTEs**: the moment you start putting a
+query *inside* another query, then giving that query a reusable name.
