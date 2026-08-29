@@ -15,7 +15,7 @@ output for basic performance intuition.
 
 - **One tool:** [litecli](https://github.com/dbcli/litecli) (a SQLite command-line
   client with autocomplete). Setup is in [getting-started/](getting-started/).
-- **One database:** `data/chinook.db`, shared by every lesson. Each lesson's
+- **One database:** `data/chinook.db`, shared by Lessons 01–09. Each lesson's
   queries run against it.
 - **Every lesson** follows the same seven-block structure:
   1. **Concept** — the idea, the syntax, the keywords of the lesson
@@ -26,23 +26,23 @@ output for basic performance intuition.
   5. **Pitfalls** — common mistakes and their fixes
   6. **Recap** — what to remember
   7. **Look ahead** — what the next lesson adds
-- **Final test** in `final-test/`: a new database (Northwind) so nothing can be
-  pattern-matched from the lessons.
 
 ## Lessons
 
-| # | Lesson | Keywords |
-|---|--------|----------|
-| 01 | Your first query | `SELECT`, `FROM`, `AS`, `DISTINCT`, `ORDER BY`, `LIMIT`, `OFFSET` |
-| 02 | Filtering rows | `WHERE`, `AND`/`OR`/`NOT`, `IN`, `BETWEEN`, `LIKE`, `IS NULL` |
-| 03 | Writing data | `INSERT`, `UPDATE`, `DELETE`, `BEGIN`/`COMMIT`/`ROLLBACK`, `CREATE TABLE` |
-| 04 | Aggregation | `COUNT`/`SUM`/`AVG`/`MIN`/`MAX`, `GROUP BY`, `HAVING` |
-| 05 | Joins I | primary/foreign keys, `INNER JOIN`, `LEFT JOIN`, self joins |
-| 06 | Joins II & set operations | `FULL`/`CROSS JOIN`, `UNION`/`UNION ALL`/`INTERSECT`/`EXCEPT` |
-| 07 | Subqueries & CTEs | subqueries in `SELECT`/`WHERE`/`FROM`, `EXISTS`, `WITH`, `WITH RECURSIVE` |
-| 08 | Expressions & functions | `CASE`, string/date/numeric functions, `COALESCE`, `NULLIF` |
-| 09 | Schema & constraints | data types, `PRIMARY KEY`/`FOREIGN KEY`/`CHECK`, `ALTER TABLE`, views, indexes |
-| 10 | Capstone | reading & refactoring, multi-part reports, `EXPLAIN`, end-of-course project |
+| # | Lesson | You need first | Scratch DB? | Key topics |
+|---|--------|----------------|-------------|------------|
+| 01 | [Your first query](lesson-01/README.md) | [Setup](getting-started/README.md) | No | `SELECT`, `FROM`, `AS`, `DISTINCT`, `ORDER BY`, `LIMIT`, `OFFSET` |
+| 02 | [Filtering rows](lesson-02/README.md) | Lesson 01 | No | `WHERE`, `AND`/`OR`/`NOT`, `IN`, `BETWEEN`, `LIKE`, `IS NULL` |
+| 03 | [Writing data](lesson-03/README.md) | Lessons 01–02 | Yes | `INSERT`, `UPDATE`, `DELETE`, transactions, `CREATE TABLE` |
+| 04 | [Aggregation & groups](lesson-04/README.md) | Lessons 01–02 | No | `COUNT`/`SUM`/`AVG`/`MIN`/`MAX`, `GROUP BY`, `HAVING` |
+| 05 | [Joins, Part I](lesson-05/README.md) | Lesson 04 | No | keys, `INNER JOIN`, `LEFT JOIN`, self joins |
+| 06 | [Joins II & set operations](lesson-06/README.md) | Lesson 05 | No | `CROSS JOIN`, emulated `FULL JOIN`, `UNION`, `INTERSECT`, `EXCEPT` |
+| 07 | [Subqueries & CTEs](lesson-07/README.md) | Lesson 06 | No | subqueries, `EXISTS`, `WITH`, `WITH RECURSIVE` |
+| 08 | [Expressions & functions](lesson-08/README.md) | Lesson 07 | No | `CASE`, string/date/numeric functions, `COALESCE`, `NULLIF` |
+| 09 | [Schema & constraints](lesson-09/README.md) | Lessons 01–03, 08 | Yes | types, constraints, `ALTER TABLE`, views, indexes |
+
+Lessons 01–09 are included in this repository. The planned capstone and final
+test are not included yet.
 
 ## Repo layout
 
@@ -50,18 +50,12 @@ output for basic performance intuition.
 README.md                <- this file
 getting-started/         <- install & first connection
 data/
-  chinook.db             <- the course database (used by lessons 01-10)
-  northwind.db           <- the final-test database
+  chinook.db             <- the course database (used by Lessons 01-09)
 lesson-01/
   README.md              <- short overview of the lesson
   lesson.md              <- the lesson itself (7 blocks)
   answers.md             <- quiz answer key
 ...
-lesson-10/
-final-test/
-  README.md
-  exam.md                <- Northwind questions
-  answers.md             <- exam answer key
 ```
 
 ## Pinned versions

@@ -28,7 +28,7 @@ __pycache__/
 Keep `tools/build_lesson09.py` untracked. It is unfinished source, not a
 generated artifact; ignoring it would hide it from future review.
 
-### Lessons 5–6 student-facing format
+### Lessons 4–6 student-facing format
 
 Adopt the detailed README labels used by Lessons 1–3 and 9:
 
@@ -38,7 +38,7 @@ Adopt the detailed README labels used by Lessons 1–3 and 9:
 - `Files in this folder`
 
 Retain a read-only note instead of a scratch-database setup section. Add a
-short `## 7. Look ahead` section to each lesson, linking the current topic to
+short `## 7. Look ahead` section to Lessons 4–6, linking the current topic to
 the next lesson’s core idea. Preserve all existing SQL, outputs, exercises,
 and answer content.
 
