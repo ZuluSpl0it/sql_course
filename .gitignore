@@ -6,3 +6,6 @@ data/northwind-scratch.db
 graphify-out/
 __pycache__/
 *.py[cod]
+
+# Isolated local workspaces
+.worktrees/
