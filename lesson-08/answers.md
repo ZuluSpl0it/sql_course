@@ -1,6 +1,7 @@
 # Lesson 08 — Quiz & Your-Turn Answer Key
 Attempt the Quiz and Your turn in `lesson.md` before opening this file.
 This lesson only reads, so run everything against `data/chinook.db`.
+
 ---
 ## Your turn
 ### 1 — invoices per month in 2023
@@ -90,6 +91,7 @@ Margaret Park is the oldest at hire, **56** (born 1947, hired 2003), then
 Nancy Edwards at **43** and Andrew Adams at **40**. `JULIANDAY` differences
 give exact days; dividing by 365.25 and rounding gives whole years without
 any month-boundary edge cases.
+
 ---
 ## Quiz
 ### 1 — `'2021-01-01' + 7` and `'abc' + 1`
@@ -132,6 +134,7 @@ Monday-based), not a weekday, and it's zero-padded text, so it wouldn't
 even test the way you'd write it. And `STRFTIME('%Q', …)` — a code that
 doesn't exist — returns **`NULL` without any error**, so a typo'd format
 code silently empties a whole column (Pitfall 4).
+
 ---
 ## Answers to the worked examples (for checking yourself)
 | example | the numbers to check |

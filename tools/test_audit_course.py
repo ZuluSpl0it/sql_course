@@ -17,6 +17,12 @@ def load_module():
 
 
 class CourseManifestTests(unittest.TestCase):
+    def test_accidental_setext_heading_requires_a_blank_line(self):
+        audit = load_module()
+        self.assertEqual([2], audit.accidental_setext_heading_lines("Normal prose\n---\n"))
+        self.assertEqual([], audit.accidental_setext_heading_lines("Normal prose\n\n---\n"))
+        self.assertEqual([], audit.accidental_setext_heading_lines("  list continuation\n---\n"))
+
     def test_extract_sql_blocks_records_sql_fences(self):
         audit = load_module()
         self.assertEqual([(1, "SELECT 1;", 4)], audit.extract_sql_blocks("```sql\nSELECT 1;\n```"))

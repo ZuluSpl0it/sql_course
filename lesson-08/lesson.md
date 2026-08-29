@@ -44,6 +44,7 @@ do real calendar math. That's Example 5, and it's the reason Lesson 05's
 ``InvoiceDate >= …`` comparisons have been working all along: ISO-ordered
 text compares correctly as text — until you try to do arithmetic with it
 (Pitfall 1).
+
 ---
 ## 2. Worked examples
 ### Example 1 — `CASE`: a value-level if/elif/else
@@ -211,6 +212,7 @@ between them, and dividing by 365.25 converts to years. Andrew was hired
 are the workhorse for "how long between these two dates?" — they handle
 leap years for free (a two-year span that crosses 2016 is 731 days, not
 730).
+
 ---
 ## 3. Your turn
 Do these in litecli against `data/chinook.db` — this lesson only reads, so
@@ -374,6 +376,7 @@ each spell *missing*. The fix is to normalize with `NULLIF(x, '')`
 *before* `COALESCE`: `COALESCE(NULLIF(Composer, ''), 'Unknown')` treats
 both as missing. Your turn #4 checks that this data needs no such fix, and
 knowing that is the whole point.
+
 ---
 ## 6. Recap
 - **An expression is a value:** literal, column, arithmetic, function, or

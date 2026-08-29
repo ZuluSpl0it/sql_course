@@ -90,6 +90,7 @@ at a time, re-joining until there's nothing left to reach. The org chart is
 exactly such a relationship — Example 5 uses it to climb `Employee`
 from the CEO to the deepest employee, no matter how deep that turns out
 to be.
+
 ---
 ## 2. Worked examples
 ### Example 1 — the correlated scalar: one number per row
@@ -301,6 +302,7 @@ rows  max_depth
 8 employees at depth 0, and the recursion then re-added the ones that have
 a manager on top of that. A missing anchor filter is a quiet row-inflation
 bug — you get *plausible-looking* output, just with the wrong root set.
+
 ---
 ## 3. Your turn
 Do these in litecli against `data/chinook.db` — this lesson only reads, so
@@ -352,6 +354,7 @@ SELECT (SELECT EmployeeId FROM Employee ORDER BY EmployeeId LIMIT 2) AS got;
 
 ```
 got
+
 ---
 1
 ```

@@ -51,6 +51,18 @@ def split_sql(sql):
     return statements
 
 
+def accidental_setext_heading_lines(markdown):
+    """Return rule-line numbers that would promote preceding prose to a heading."""
+    lines = markdown.splitlines()
+    return [
+        number + 1
+        for number in range(1, len(lines))
+        if lines[number] in {"---", "==="}
+        and lines[number - 1].strip()
+        and not lines[number - 1].startswith((" ", "\t"))
+    ]
+
+
 @dataclass
 class DocumentResult:
     relative_path: str
@@ -190,6 +202,9 @@ def audit_course(root: Path, use_litecli=False):
     results = []
     for document in course_documents(root):
         result = audit_document(root, document)
+        markdown = (root / document.relative_path).read_text(encoding="utf-8")
+        for line in accidental_setext_heading_lines(markdown):
+            result.failures.append(f"line {line}: add a blank line before the rule")
         if litecli_path:
             error = audit_litecli_document(root, document, litecli_path)
             if error:

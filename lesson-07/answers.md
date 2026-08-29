@@ -1,6 +1,7 @@
 # Lesson 07 — Quiz & Your-Turn Answer Key
 Attempt the Quiz and Your turn in `lesson.md` before opening this file.
 This lesson only reads, so run everything against `data/chinook.db`.
+
 ---
 ## Your turn
 ### 1 — scalar in the `SELECT` list
@@ -87,6 +88,7 @@ Each rank is `1 + (number of artists earning strictly more)`. Ties share a
 rank (two artists at the same revenue get the same number), so you can get
 ranks like 1, 2, 3, 3, 5 — a "competition" ranking, not a dense one. That's
 what the correlated count naturally gives you.
+
 ---
 ## Quiz
 ### 1 — what a scalar subquery must return
@@ -137,6 +139,7 @@ filter, and (b) add a **depth cap** in the recursive part, e.g.
 `WHERE org.depth < 10` (or track seen ids with a `SEEN` set) so a cyclic or
 pathological graph stops after a bounded number of levels instead of
 spinning forever.
+
 ---
 ## Answers to the worked examples (for checking yourself)
 | example | the number to check |
