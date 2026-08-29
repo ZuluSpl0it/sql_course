@@ -1,4 +1,5 @@
 import importlib.util
+import re
 import unittest
 from pathlib import Path
 
@@ -121,6 +122,15 @@ class LegacyAuditTests(unittest.TestCase):
             "## 7. Look ahead",
         ):
             self.assertIn(heading, lesson)
+
+    def test_northwind_final_has_fifty_questions_and_learning_support(self):
+        root = Path(__file__).resolve().parent.parent
+        final = root / "final-test"
+        for name in ("README.md", "exam.md", "answers.md", "guided-solutions.md"):
+            self.assertTrue((final / name).is_file(), f"missing {final / name}")
+        exam = (final / "exam.md").read_text(encoding="utf-8")
+        numbers = re.findall(r"(?m)^(\d+)\. ", exam)
+        self.assertEqual([str(number) for number in range(1, 51)], numbers)
 
 
 if __name__ == "__main__":

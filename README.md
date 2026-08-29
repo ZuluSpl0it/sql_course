@@ -15,7 +15,7 @@ output for basic performance intuition.
 
 - **One tool:** [litecli](https://github.com/dbcli/litecli) (a SQLite command-line
   client with autocomplete). Setup is in [getting-started/](getting-started/).
-- **One database:** `data/chinook.db`, shared by Lessons 01–09. Each lesson's
+- **One database:** `data/chinook.db`, shared by Lessons 01–10. Each lesson's
   queries run against it.
 - **Every lesson** follows the same seven-block structure:
   1. **Concept** — the idea, the syntax, the keywords of the lesson
@@ -42,8 +42,12 @@ output for basic performance intuition.
 | 09 | [Schema & constraints](lesson-09/README.md) | Lessons 01–03, 08 | Yes | types, constraints, `ALTER TABLE`, views, indexes |
 | 10 | [Performance & capstone](lesson-10/README.md) | Lessons 01–09 | Yes | query plans, index judgment, fan-out-safe reports, CTEs |
 
-Lessons 01–10 are included in this repository. A separate final test is not
-included yet.
+## Final test
+
+After Lesson 10, take the [Northwind final test](final-test/README.md). It
+uses the unfamiliar `data/northwind.db` dataset to assess transfer across the
+whole course; its self-grading key and guided solutions are separate from the
+exam questions.
 
 ## Repo layout
 
@@ -51,12 +55,18 @@ included yet.
 README.md                <- this file
 getting-started/         <- install & first connection
 data/
-  chinook.db             <- the course database (used by Lessons 01-09)
+  chinook.db             <- the course database (used by Lessons 01-10)
+  northwind.db           <- unfamiliar database for the final test
 lesson-01/
   README.md              <- short overview of the lesson
   lesson.md              <- the lesson itself (7 blocks)
   answers.md             <- quiz answer key
 ...
+final-test/
+  README.md              <- rules and self-grading guidance
+  exam.md                <- 50-question assessment
+  answers.md             <- answer key and review references
+  guided-solutions.md    <- step-by-step help for the hardest problems
 ```
 
 ## Pinned versions
