@@ -10,16 +10,45 @@ import subprocess
 import sys
 import tempfile
 
-try:
-    from tools.audit_legacy_lessons import extract_sql_blocks, split_sql
-except ModuleNotFoundError:
-    from audit_legacy_lessons import extract_sql_blocks, split_sql
-
-
 @dataclass(frozen=True)
 class Document:
     relative_path: str
     database: str
+
+
+def extract_sql_blocks(markdown):
+    """Return ``(start_line, sql, next_line)`` for each fenced SQL block."""
+    blocks = []
+    in_sql = False
+    start = 0
+    body = []
+    for number, line in enumerate(markdown.splitlines(), 1):
+        stripped = line.strip()
+        if not in_sql and stripped == "```sql":
+            in_sql, start, body = True, number, []
+        elif in_sql and stripped == "```":
+            blocks.append((start, "\n".join(body), number + 1))
+            in_sql = False
+        elif in_sql:
+            body.append(line)
+    return blocks
+
+
+def split_sql(sql):
+    """Split complete SQLite statements while preserving comments and strings."""
+    statements = []
+    current = []
+    for character in sql:
+        current.append(character)
+        if character == ";" and sqlite3.complete_statement("".join(current)):
+            statement = "".join(current).strip()
+            if statement:
+                statements.append(statement)
+            current = []
+    tail = "".join(current).strip()
+    if tail:
+        statements.append(tail)
+    return statements
 
 
 @dataclass

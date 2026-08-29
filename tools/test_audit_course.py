@@ -17,6 +17,17 @@ def load_module():
 
 
 class CourseManifestTests(unittest.TestCase):
+    def test_extract_sql_blocks_records_sql_fences(self):
+        audit = load_module()
+        self.assertEqual([(1, "SELECT 1;", 4)], audit.extract_sql_blocks("```sql\nSELECT 1;\n```"))
+
+    def test_split_sql_preserves_inline_comment_with_next_statement(self):
+        audit = load_module()
+        self.assertEqual(
+            ["SELECT 1;", "-- note\nSELECT 2;"],
+            audit.split_sql("SELECT 1; -- note\nSELECT 2;"),
+        )
+
     def test_manifest_has_twenty_lesson_documents_and_two_final_documents(self):
         audit = load_module()
         documents = audit.course_documents(Path("."))
