@@ -40,9 +40,10 @@ output for basic performance intuition.
 | 07 | [Subqueries & CTEs](lesson-07/README.md) | Lesson 06 | No | subqueries, `EXISTS`, `WITH`, `WITH RECURSIVE` |
 | 08 | [Expressions & functions](lesson-08/README.md) | Lesson 07 | No | `CASE`, string/date/numeric functions, `COALESCE`, `NULLIF` |
 | 09 | [Schema & constraints](lesson-09/README.md) | Lessons 01–03, 08 | Yes | types, constraints, `ALTER TABLE`, views, indexes |
+| 10 | [Performance & capstone](lesson-10/README.md) | Lessons 01–09 | Yes | query plans, index judgment, fan-out-safe reports, CTEs |
 
-Lessons 01–09 are included in this repository. The planned capstone and final
-test are not included yet.
+Lessons 01–10 are included in this repository. A separate final test is not
+included yet.
 
 ## Repo layout
 

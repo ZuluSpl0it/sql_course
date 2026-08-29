@@ -100,6 +100,28 @@ class LegacyAuditTests(unittest.TestCase):
             lesson = (root / f"lesson-{number}" / "lesson.md").read_text(encoding="utf-8")
             self.assertIn("## 7. Look ahead", lesson)
 
+    def test_lesson_10_has_the_standard_student_structure(self):
+        root = Path(__file__).resolve().parent.parent
+        readme_path = root / "lesson-10" / "README.md"
+        lesson_path = root / "lesson-10" / "lesson.md"
+        answers_path = root / "lesson-10" / "answers.md"
+        for path in (readme_path, lesson_path, answers_path):
+            self.assertTrue(path.is_file(), f"missing {path}")
+        readme = readme_path.read_text(encoding="utf-8")
+        for label in ("**Promise:**", "**You need from before:**", "**Keywords this lesson:**", "**Files in this folder:**", "**Before you start**"):
+            self.assertIn(label, readme)
+        lesson = lesson_path.read_text(encoding="utf-8")
+        for heading in (
+            "## 1. The concept",
+            "## 2. Worked examples",
+            "## 3. Your turn",
+            "## 4. Quiz",
+            "## 5. Pitfalls",
+            "## 6. Recap",
+            "## 7. Look ahead",
+        ):
+            self.assertIn(heading, lesson)
+
 
 if __name__ == "__main__":
     unittest.main()
