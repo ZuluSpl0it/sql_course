@@ -89,6 +89,13 @@ don't rely on it. To control the order:
 SELECT Name
 FROM   Artist
 ORDER  BY Name;            -- default: A → Z (ASC = ascending)
+```
+
+For the reverse order, add `DESC`:
+
+```sql
+SELECT Name
+FROM   Artist
 ORDER  BY Name DESC;       -- Z → A (descending)
 ```
 
