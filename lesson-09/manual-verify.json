@@ -1,0 +1,6 @@
+{
+  "12": "PRAGMA foreign_keys = ON is session-scoped and produces no output (Ex 6)",
+  "13": "bad-FK insert only fails while the pragma is ON in this session (Ex 6)",
+  "24": "BEGIN...ROLLBACK spans DDL; the per-statement audit cannot observe one transaction (Ex 11)",
+  "25": "nested BEGIN is a session-level error (Ex 11)"
+}

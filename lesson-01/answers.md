@@ -1,0 +1,174 @@
+# Lesson 01 — Quiz Answer Key
+
+Attempt `lesson.md` → Quiz before opening this file. Every query below runs
+against `data/chinook.db`. Expected outputs were verified against the
+database as shipped in this repo.
+
+Many different queries can be correct; the key shows one good version.
+Compare **outputs**, not query text.
+
+## Q1 — How many tracks are in the database?
+
+```sql
+SELECT COUNT(*)
+FROM   Track;
+```
+
+```
+COUNT(*)
+--------
+3503
+```
+
+(`COUNT(*)` was given as "magic" in the question — Lesson 04 explains it.)
+
+## Q2 — How many distinct genres appear in the Track table?
+
+```sql
+SELECT COUNT(DISTINCT GenreId)
+FROM   Track;
+```
+
+```
+COUNT(DISTINCT GenreId)
+-----------------------
+25
+```
+
+Also correct — same output:
+
+```sql
+SELECT COUNT(*)
+FROM   (SELECT DISTINCT GenreId FROM Track);
+```
+
+## Q3 — Names of all media types, ordered by their id
+
+```sql
+SELECT Name
+FROM   MediaType
+ORDER  BY MediaTypeId;
+```
+
+```
+Name
+---------------------------
+MPEG audio file
+Protected AAC audio file
+Protected MPEG-4 video file
+Purchased AAC audio file
+AAC audio file
+```
+
+Note: 5 rows. The last one (`AAC audio file`, id 5) sorts *after* the
+`P...` rows alphabetically — but we ordered by id, not by name, which is
+why it's last. A common slip is to write `ORDER BY Name`.
+
+## Q4 — Names of the 3 most expensive tracks (with price)
+
+Any 3 of the tracks priced 1.99 are correct (there are several). One good
+answer, tie-broken by name:
+
+```sql
+SELECT Name, UnitPrice
+FROM   Track
+ORDER  BY UnitPrice DESC, Name
+LIMIT  3;
+```
+
+```
+Name                UnitPrice
+------------------ ----------
+"?                  1.99
+...And Found        1.99
+...In Translation   1.99
+```
+
+Accept: any query returning 3 rows where `UnitPrice` is 1.99.
+Don't accept: a query that returns 3 rows without verifying the price is
+the maximum (e.g. `ORDER BY Name LIMIT 3`).
+
+## Q5 — The 5 artists alphabetically just after the first 50
+
+```sql
+SELECT Name
+FROM   Artist
+ORDER  BY Name
+LIMIT  5 OFFSET 50;
+```
+
+```
+Name
+----------------------------------------
+Cake
+Calexico
+Charles Dutoit & L'Orchestre Symphonique de Montréal
+Charlie Brown Jr.
+Chicago Symphony Chorus, Chicago Symphony Orchestra & Sir Georg Solti
+```
+
+The long names wrap on narrow terminals — that's display, not data.
+Don't accept an `OFFSET 50` without an `ORDER BY` (unstable result) or an
+`OFFSET` written before a `LIMIT` (SQLite syntax error — pitfall 2).
+
+---
+
+## Reference for the "Your Turn" prompts
+
+These were open-ended; if you're checking your work, one good version each:
+
+1. First 10 tracks:
+
+```sql
+SELECT Name FROM Track LIMIT 10;
+```
+
+2. 5 artists, Z → A:
+
+```sql
+SELECT Name FROM Artist ORDER BY Name DESC LIMIT 5;
+```
+
+```
+Name
+-------------------
+Zeca Pagodinho
+Youssou N'Dour
+Yo-Yo Ma
+Yehudi Menuhin
+Xis
+```
+
+Any 5 of the last rows in descending name order are fine, but
+`ORDER BY Name DESC` must be present.
+
+3. All media type names:
+
+```sql
+SELECT Name FROM MediaType;
+-- or, to see everything while exploring:
+SELECT * FROM MediaType;
+```
+
+5 rows: MPEG audio file, Protected AAC audio file,
+Protected MPEG-4 video file, Purchased AAC audio file, AAC audio file.
+
+4. 5 cheapest tracks with the price labeled `price`:
+
+```sql
+SELECT Name, UnitPrice AS price
+FROM   Track
+ORDER  BY UnitPrice, Name
+LIMIT  5;
+```
+
+(All track prices are 0.99 or 1.99 — the "cheapest" are the 0.99 ones;
+the tie-breaker by `Name` makes the answer deterministic.)
+
+5. Artists at position 251–255 alphabetically:
+
+```sql
+SELECT Name FROM Artist ORDER BY Name LIMIT 5 OFFSET 250;
+```
+
+(275 artists exist, so this returns 5 rows; positions 1–275.)

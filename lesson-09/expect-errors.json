@@ -1,0 +1,8 @@
+{
+  "8": "UNIQUE constraint failed: Review.Code",
+  "9": "NOT NULL constraint failed: Review.Title",
+  "10": "CHECK constraint failed: Review",
+  "19": "Cannot add a UNIQUE column",
+  "20": "Cannot add a PRIMARY KEY column",
+  "21": "near \"CONSTRAINT\": syntax error"
+}
