@@ -40,7 +40,7 @@ output for basic performance intuition.
 | 07 | [Subqueries & CTEs](lesson-07/README.md) | Lesson 06 | No | subqueries, `EXISTS`, `WITH`, `WITH RECURSIVE` |
 | 08 | [Expressions & functions](lesson-08/README.md) | Lesson 07 | No | `CASE`, string/date/numeric functions, `COALESCE`, `NULLIF` |
 | 09 | [Schema & constraints](lesson-09/README.md) | Lessons 01–03, 08 | Yes | types, constraints, `ALTER TABLE`, views, indexes |
-| 10 | [Performance & capstone](lesson-10/README.md) | Lessons 01–09 | Yes | query plans, index judgment, fan-out-safe reports, CTEs |
+| 10 | [Performance & integration](lesson-10/README.md) | Lessons 01–09 | Yes | query plans, index judgment, fan-out-safe reports, CTEs |
 
 ## Final test
 

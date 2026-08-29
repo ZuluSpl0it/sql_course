@@ -1,4 +1,4 @@
-# Lesson 10 — Quiz & Capstone Answer Key
+# Lesson 10 — Quiz & Integration Answer Key
 
 Attempt [lesson.md](lesson.md) before opening this file. Start with a fresh scratch copy because the Your Turn tasks create temporary indexes.
 

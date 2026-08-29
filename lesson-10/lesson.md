@@ -1,7 +1,7 @@
-# Lesson 10: Performance & Capstone
+# Lesson 10: Performance & Integration
 
 You can write a query. Now ask what work SQLite performs to answer it. A
-query plan is a route description, not a stopwatch. This capstone combines
+query plan is a route description, not a stopwatch. This integration lesson combines
 that judgment with correct joins, correct row grain, clear names, and only
 evidence-backed indexes.
 

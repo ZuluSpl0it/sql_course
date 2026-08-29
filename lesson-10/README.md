@@ -1,4 +1,4 @@
-# Lesson 10: Performance & Capstone
+# Lesson 10: Performance & Integration
 
 **Promise:** by the end of this lesson you can read a SQLite query plan as a
 diagnostic, decide whether an index is likely to help, and combine the whole
