@@ -55,6 +55,7 @@ exam questions.
 README.md                <- this file
 getting-started/         <- install & first connection
 data/
+  README.md               <- database and scratch-copy guidance
   chinook.db             <- the course database (used by Lessons 01-10)
   northwind.db           <- unfamiliar database for the final test
 lesson-01/
