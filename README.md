@@ -67,6 +67,10 @@ final-test/
   exam.md                <- 50-question assessment
   answers.md             <- answer key and review references
   guided-solutions.md    <- step-by-step help for the hardest problems
+tools/
+  README.md              <- maintainers' course-audit instructions
+  audit_course.py        <- whole-course SQL and Markdown audit
+  test_audit_course.py   <- auditor regression tests
 ```
 
 ## Pinned versions
