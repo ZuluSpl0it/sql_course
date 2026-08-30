@@ -63,10 +63,63 @@ in every lesson:
 Everything else you type is SQL — end it with `;` and press Enter to run.
 litecli autocompletes table and column names with **Tab** — use it.
 
+### Multiline SQL (recommended)
+
+LiteCLI starts in single-line mode (`multi_line = False`), where pressing
+Enter immediately executes the current line. A partial statement such as
+`SELECT` therefore reports `incomplete input`. Enable multiline mode once so
+you can format queries across several lines:
+
+```bash
+nano ~/.config/litecli/config
+```
+
+In the `[main]` section, change:
+
+```ini
+multi_line = False
+```
+
+to:
+
+```ini
+multi_line = True
+```
+
+Exit LiteCLI and start it again. Verify the setting without opening the editor:
+
+```bash
+grep multi_line ~/.config/litecli/config
+```
+
+With multiline mode enabled, Enter adds a line and the terminating semicolon
+executes the statement:
+
+```sql
+SELECT
+    Name,
+    Composer,
+    UnitPrice
+FROM Track
+WHERE UnitPrice > 0.99;
+```
+
+The continuation prompt looks like this:
+
+```text
+./data/chinook.db> SELECT
+              ->     Name,
+              ->     Composer,
+              ->     UnitPrice
+              -> FROM Track
+              -> WHERE UnitPrice > 0.99;
+```
+
 ## Step 4 — Warm-up
 
-Try these in your first session (they'll fail until you've typed `;` and
-Enter — that's part of what you're learning):
+Try these in your first session. In the default single-line mode, type each
+complete query, including `;`, before pressing Enter. In multiline mode, press
+Enter after each line and use `;` on the final line:
 
 ```sql
 .tables
@@ -101,5 +154,7 @@ deletes. (On Windows use `copy data\chinook.db data\chinook-scratch.db`.)
 - **Your terminal shows `???` for some names** — Chinook has some non-ASCII
   artist names (e.g. Antônio Carlos Jobim). Set your terminal's encoding to
   UTF-8 (on Windows: `chcp 65001`).
-- **A query hangs** — you forgot the semicolon. Press Enter again on an empty
-  line to finish the statement, or Ctrl+C to cancel.
+- **`incomplete input` after pressing Enter** — LiteCLI is in single-line mode.
+  Enable `multi_line = True` as described above, or enter the complete
+  statement, including its semicolon, before pressing Enter. Press Ctrl+C to
+  cancel an unfinished input.
