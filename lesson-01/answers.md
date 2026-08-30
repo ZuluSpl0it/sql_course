@@ -7,40 +7,37 @@ database as shipped in this repo.
 Many different queries can be correct; the key shows one good version.
 Compare **outputs**, not query text.
 
-## Q1 — How many tracks are in the database?
+## Q1 — First 10 tracks
 
 ```sql
-SELECT COUNT(*)
+SELECT Name
+FROM   Track
+LIMIT  10;
+```
+
+```
+Name
+---------------------------------------
+For Those About To Rock (We Salute You)
+Balls to the Wall
+Fast As a Shark
+Restless and Wild
+Princess of the Dawn
+Put The Finger On You
+Let's Get It Up
+Inject The Venom
+Snowballed
+Evil Walks
+```
+
+## Q2 — Distinct genre IDs
+
+```sql
+SELECT DISTINCT GenreId
 FROM   Track;
 ```
 
-```
-COUNT(*)
---------
-3503
-```
-
-(`COUNT(*)` was given as "magic" in the question — Lesson 04 explains it.)
-
-## Q2 — How many distinct genres appear in the Track table?
-
-```sql
-SELECT COUNT(DISTINCT GenreId)
-FROM   Track;
-```
-
-```
-COUNT(DISTINCT GenreId)
------------------------
-25
-```
-
-Also correct — same output:
-
-```sql
-SELECT COUNT(*)
-FROM   (SELECT DISTINCT GenreId FROM Track);
-```
+Returns one row for each of the 25 genre IDs, from `1` through `25`.
 
 ## Q3 — Names of all media types, ordered by their id
 
