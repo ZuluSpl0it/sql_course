@@ -1,6 +1,6 @@
 # Scratch copies of the course databases — never commit these
-data/chinook-scratch.db
-data/northwind-scratch.db
+12-data/chinook-scratch.db
+12-data/northwind-scratch.db
 
 # Generated local analysis and Python cache
 graphify-out/
