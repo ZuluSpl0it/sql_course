@@ -12,7 +12,7 @@ anything else: **almost every function returns `NULL` when given a
 functions get special attention because Chinook stores its dates as
 **text**, which is exactly the situation those functions exist for.
 
-**No scratch copy needed.** This lesson only reads.
+**No reset needed.** This lesson only reads.
 
 ---
 
@@ -214,9 +214,9 @@ leap years for free (a two-year span that crosses 2016 is 731 days, not
 730).
 
 ---
-## 3. Your turn
+## 3. Practical Exercises
 Do these in Jasper SQL Playground against `data/chinook.db`. This lesson only
-reads, so no reset is needed. Answers in `answers.md`.
+reads, so no reset is needed. Answers in `answers_practical.md`.
 1. **Invoices per month in 2023.** Use `STRFTIME('%m', …)` to show the
    invoice count for each of the twelve months of 2023. (One month differs
    from the rest — find it.)
@@ -374,7 +374,7 @@ Chinook's data is clean on this point — zero tracks have an empty-string
 composer — but in the wild, `''` and `NULL` are how two upstream systems
 each spell *missing*. The fix is to normalize with `NULLIF(x, '')`
 *before* `COALESCE`: `COALESCE(NULLIF(Composer, ''), 'Unknown')` treats
-both as missing. Your turn #4 checks that this data needs no such fix, and
+both as missing. Practical exercise #4 checks that this data needs no such fix, and
 knowing that is the whole point.
 
 ---

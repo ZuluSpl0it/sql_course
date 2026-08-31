@@ -12,6 +12,7 @@ collide, and that collision is half this lesson.
 foreign key, self join, fan-out
 
 **Files in this folder:** [lesson.md](lesson.md) (everything, including the
-quiz) · [answers.md](answers.md) (quiz + your-turn answers)
+quiz), [answers_practical.md](answers_practical.md), and
+[answers_quiz.md](answers_quiz.md)
 
-**No scratch copy needed** — this lesson only reads.
+**No reset needed** — this lesson only reads.

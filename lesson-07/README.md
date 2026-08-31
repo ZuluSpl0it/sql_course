@@ -15,6 +15,7 @@ the `Employee.ReportsTo` org chart to *any* depth). And the failures that
 *look* like they should error but don't: a multi-row "scalar" that silently
 returns one row, and a non-correlated subquery that quietly prints a constant.
 
-**No scratch copy needed.** This lesson only reads.
+**No reset needed.** This lesson only reads.
 
-**Files:** [`lesson.md`](lesson.md) · [`answers.md`](answers.md)
+**Files:** [`lesson.md`](lesson.md) · [`answers_practical.md`](answers_practical.md)
+· [`answers_quiz.md`](answers_quiz.md)

@@ -20,7 +20,7 @@ output for basic performance intuition.
 - **Every lesson** follows the same seven-block structure:
   1. **Concept** — the idea, the syntax, the keywords of the lesson
   2. **Worked examples** — real queries with real output
-  3. **Your turn** — prompts for you to solve (no answers shown)
+  3. **Practical exercises** — prompts for you to solve (no answers shown)
   4. **Quiz** — self-graded; the answer key is in a separate file so you
      attempt it first
   5. **Pitfalls** — common mistakes and their fixes
@@ -61,12 +61,13 @@ data/
 lesson-01/
   README.md              <- short overview of the lesson
   lesson.md              <- the lesson itself (7 blocks)
-  answers.md             <- quiz answer key
+  answers_practical.md   <- practical-exercise answer key
+  answers_quiz.md        <- quiz answer key
 ...
 final-test/
   README.md              <- rules and self-grading guidance
   exam.md                <- 50-question assessment
-  answers.md             <- answer key and review references
+  answers.md              <- final-test answer key and review references
   guided-solutions.md    <- step-by-step help for the hardest problems
 tools/
   README.md              <- maintainers' course-audit instructions

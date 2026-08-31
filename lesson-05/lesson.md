@@ -8,7 +8,7 @@ table — you have to **connect** the tables. That connection is a **join**,
 and this lesson teaches the two workhorses: `INNER JOIN` and `LEFT JOIN`,
 plus a join to a table's own history (a **self join**).
 
-**No scratch copy needed.** This lesson only reads.
+**No reset needed.** This lesson only reads.
 
 ---
 
@@ -358,10 +358,10 @@ one album → one artist). No one-side value gets repeated. The rule: **don't
 
 ---
 
-## 3. Your turn
+## 3. Practical Exercises
 
 Work in Jasper SQL Playground against `data/chinook.db` (this lesson only reads). Check
-`answers.md` when done.
+`answers_practical.md` when done.
 
 1. List the 10 tracks in alphabetical order, each with its album title.
 2. How many albums does **Iron Maiden** have? How many does **Lenny
@@ -377,7 +377,7 @@ Work in Jasper SQL Playground against `data/chinook.db` (this lesson only reads)
 
 ## 4. Quiz
 
-Answer without scrolling up. The key is in `answers.md`.
+Answer without scrolling up. The key is in `answers_quiz.md`.
 
 1. In one sentence, what does an `INNER JOIN` drop from the result?
 2. Why did the self-join in Example 3 use `LEFT JOIN` instead of

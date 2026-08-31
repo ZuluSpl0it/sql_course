@@ -303,12 +303,11 @@ data.)
 
 This is how every "page 2 of a results list" in any web app is built.
 
-## 3. Your turn
+## 3. Practical Exercises
 
-Attempt these in Jasper SQL Playground before looking at anything else. No answers in
-this file's query form — that's the point. The result targets below let you
-check your work without giving away the SQL. (The quiz has its answer key in
-`answers.md`.)
+Attempt these in Jasper SQL Playground before looking at anything else. Write
+the queries yourself, then compare your results with
+[`answers_practical.md`](answers_practical.md).
 
 1. List the first 10 tracks in the database.
 2. List the 5 artists with the last names in alphabetical order,
@@ -318,24 +317,6 @@ check your work without giving away the SQL. (The quiz has its answer key in
 4. List the 5 tracks with the *lowest* price, cheapest first, with
    the price column labeled `price`.
 5. (stretch) List the 5 artists at position 251–255 alphabetically.
-
-Compare your results with these targets. The targets show output only — write
-the queries yourself:
-
-1. Ten rows: `For Those About To Rock (We Salute You)`, `Balls to the Wall`,
-   `Fast As a Shark`, `Restless and Wild`, `Princess of the Dawn`,
-   `Put The Finger On You`, `Let's Get It Up`, `Inject The Venom`,
-   `Snowballed`, `Evil Walks`.
-2. Five rows in this order: `Zeca Pagodinho`, `Youssou N'Dour`, `Yo-Yo Ma`,
-   `Yehudi Menuhin`, `Xis`.
-3. Five media type names: `MPEG audio file`, `Protected AAC audio file`,
-   `Protected MPEG-4 video file`, `Purchased AAC audio file`,
-   `AAC audio file`.
-4. Five rows, each with a `Name` and `price` column; every price is `0.99`.
-   Names, in order: `"40"`, `"Eine Kleine Nachtmusik" Serenade In G, K. 525: I. Allegro`,
-   `#1 Zero`, `#9 Dream`, `'Round Midnight`.
-5. Five rows in this order: `The Postal Service`, `The Rolling Stones`,
-   `The Tea Party`, `The Who`, `Tim Maia`.
 
 ## 4. Pitfalls
 
@@ -384,7 +365,7 @@ reads its output. Name the columns you mean.
 ## 6. Quiz
 
 Five questions. For each, write a query, run it, and compare your output
-with `answers.md`. A correct answer is a query that **returns** the right
+with `answers_quiz.md`. A correct answer is a query that **returns** the right
 result — many different queries can be correct; the key shows one good one.
 
 1. List the 10 tracks at the start of the database.

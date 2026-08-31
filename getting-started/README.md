@@ -58,8 +58,8 @@ That query lists all 275 artists — you've just run your first SQL query.
 - **Run everything yourself.** Every query in a lesson is copy-paste-runnable
   against `data/chinook.db`. If your output differs from the book, stop and
   figure out why before moving on.
-- **Quizzes are self-graded.** Each lesson's quiz has an answer key in a
-  separate file (`answers.md`). Attempt the quiz before opening it.
+- **Quizzes are self-graded.** Each lesson has separate practical and quiz
+  answer keys. Attempt the exercise or quiz before opening its answer file.
 - **Don't modify the original file.** Jasper works on an in-memory copy, so
   your repository database remains unchanged. For a lesson that writes data,
   upload the original file again when you need a clean starting point:

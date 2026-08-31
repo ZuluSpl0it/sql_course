@@ -12,6 +12,7 @@ numeric behavior (`ROUND`, `ABS`, integer division), and the two `NULL`
 tools: `COALESCE` and `NULLIF`. Plus what SQLite will and won't check for
 you when it parses a date string.
 
-**No scratch copy needed.** This lesson only reads.
+**No reset needed.** This lesson only reads.
 
-**Files:** [`lesson.md`](lesson.md) · [`answers.md`](answers.md)
+**Files:** [`lesson.md`](lesson.md) · [`answers_practical.md`](answers_practical.md)
+· [`answers_quiz.md`](answers_quiz.md)

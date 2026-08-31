@@ -12,7 +12,7 @@ python3 tools/audit_course.py
 ```
 
 The audit uses temporary copies of `data/chinook.db` and `data/northwind.db`.
-It checks Lessons 01–10, all answer keys, and the final-test answers and
+It checks Lessons 01–10, both lesson answer-key files, and the final-test answers and
 guided solutions without changing either shipped database.
 
 Normal SQL blocks must run successfully. The report separately counts lesson

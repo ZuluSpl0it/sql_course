@@ -212,9 +212,9 @@ ORDER  BY type, name;
 (no rows)
 ```
 
-## 3. Your turn
+## 3. Practical Exercises
 
-Work in Jasper SQL Playground with a fresh database load. Check [answers.md](answers.md) after attempting
+Work in Jasper SQL Playground with a fresh database load. Check [answers_practical.md](answers_practical.md) after attempting
 the work.
 
 1. Run `EXPLAIN QUERY PLAN` for invoices filtered to one billing country.

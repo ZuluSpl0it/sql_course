@@ -10,8 +10,9 @@ database in Jasper SQL Playground).
 **Keywords this lesson:** `INSERT`, `VALUES`, `UPDATE`, `SET`, `DELETE`,
 `BEGIN`, `COMMIT`, `ROLLBACK`, `CREATE TABLE`, `changes()`
 
-**Files in this folder:** [lesson.md](lesson.md), [answers.md](answers.md)
-(quiz key — open only after you've attempted the quiz).
+**Files in this folder:** [lesson.md](lesson.md),
+[answers_practical.md](answers_practical.md), and
+[answers_quiz.md](answers_quiz.md) (open only after attempting the work).
 
 **Before you start** — this is the first lesson that *writes*. Open Jasper SQL
 Playground and load `data/chinook.db`:

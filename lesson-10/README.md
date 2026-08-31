@@ -13,8 +13,8 @@ index, `CREATE INDEX`, `DROP INDEX`, sargable predicate, CTE, fan-out,
 `NOT EXISTS`
 
 **Files in this folder:** [lesson.md](lesson.md) (read and do this),
-[answers.md](answers.md) (quiz and capstone key — open only after attempting
-the work).
+[answers_practical.md](answers_practical.md), and
+[answers_quiz.md](answers_quiz.md) (open only after attempting the work).
 
 **Before you start** — this lesson creates temporary indexes. Open Jasper SQL
 Playground and load `data/chinook.db`. Work in its in-memory copy and reload

@@ -7,7 +7,7 @@ just that — a `SELECT` whose result you use somewhere inside a bigger
 `SELECT`. There are three places it can live, and this lesson covers all
 three, plus the two forms of `WITH` that let you *name* a subquery.
 
-**No scratch copy needed.** This lesson only reads.
+**No reset needed.** This lesson only reads.
 
 ---
 
@@ -304,9 +304,9 @@ a manager on top of that. A missing anchor filter is a quiet row-inflation
 bug — you get *plausible-looking* output, just with the wrong root set.
 
 ---
-## 3. Your turn
+## 3. Practical Exercises
 Do these in Jasper SQL Playground against `data/chinook.db`. This lesson only
-reads, so no reset is needed. Answers in `answers.md`.
+reads, so no reset is needed. Answers in `answers_practical.md`.
 1. **Scalar in the `SELECT` list.** Add a column showing the store's grand
    total next to each of the first 5 invoices. (One subquery, no `JOIN`.)
 2. **Correlated average.** For each of the 5 customers with the highest

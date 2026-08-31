@@ -388,10 +388,11 @@ No row created. The database checked that `ArtistId 9999` exists in
 Pitfall 3. And note the statement failed *cleanly*: if you'd been in a
 transaction, a `ROLLBACK` would restore everything else you'd done in it.)
 
-## 3. Your turn
+## 3. Practical Exercises
 
-All in the Jasper database session. Reload `data/chinook.db` first so you start
-from the same state as the examples.
+Write and run these in Jasper SQL Playground. Reload `data/chinook.db` first
+so you start from the same state as the examples. Compare your results with
+`answers_practical.md`.
 
 1. Insert a new artist called "Your Band Name Here". Show its id.
 2. Insert two new genres (ids 26 and 27 — supply them yourself this time:
@@ -407,7 +408,7 @@ from the same state as the examples.
 ## 4. Quiz
 
 Reload `data/chinook.db` before starting so the expected outputs below match
-yours. Each question is independent; answer keys in `answers.md`.
+yours. Each question is independent; answer keys are in `answers_quiz.md`.
 
 1. Insert an artist named "Quiz New Artist". Show its id and name.
 2. Change customer 5's city to "Montreal". Show the city before and after.

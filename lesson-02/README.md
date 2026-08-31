@@ -11,5 +11,5 @@ against `NULL` never works (and how to test for it correctly).
 `IS NULL`, `IS NOT NULL`
 
 **Files in this folder:** [lesson.md](lesson.md) (read and do this),
-[answers.md](answers.md) (quiz key — open only after you've attempted the
-quiz).
+[answers_practical.md](answers_practical.md), and
+[answers_quiz.md](answers_quiz.md) (open only after attempting the work).

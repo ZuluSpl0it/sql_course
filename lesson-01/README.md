@@ -11,5 +11,5 @@ output clearly, sort it, and page through it.
 `ASC`, `DESC`, `LIMIT`, `OFFSET`
 
 **Files in this folder:** [lesson.md](lesson.md) (read and do this),
-[answers.md](answers.md) (quiz key — open only after you've attempted the
-quiz).
+[answers_practical.md](answers_practical.md), and
+[answers_quiz.md](answers_quiz.md) (open only after attempting the work).

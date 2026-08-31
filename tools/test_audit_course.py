@@ -37,15 +37,15 @@ class CourseManifestTests(unittest.TestCase):
     def test_manifest_has_twenty_lesson_documents_and_two_final_documents(self):
         audit = load_module()
         documents = audit.course_documents(Path("."))
-        self.assertEqual(22, len(documents))
-        self.assertEqual(20, sum(item.database == "chinook" for item in documents))
+        self.assertEqual(32, len(documents))
+        self.assertEqual(30, sum(item.database == "chinook" for item in documents))
         self.assertEqual(2, sum(item.database == "northwind" for item in documents))
 
     def test_instructional_blocks_are_classified_explicitly(self):
         audit = load_module()
         self.assertEqual("template", audit.block_mode("lesson-01/lesson.md", 1))
         self.assertEqual("expected_error", audit.block_mode("lesson-09/lesson.md", 8))
-        self.assertEqual("run", audit.block_mode("lesson-10/answers.md", 1))
+        self.assertEqual("run", audit.block_mode("lesson-10/answers_quiz.md", 1))
 
 
 class CourseExecutionTests(unittest.TestCase):

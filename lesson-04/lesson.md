@@ -8,7 +8,7 @@ those is answered by listing rows — you have to **collapse** many rows
 into one. That's what this lesson teaches: the five aggregate functions,
 `GROUP BY`, and the filter that works on groups, `HAVING`.
 
-**No scratch copy needed.** This lesson only reads.
+**No reset needed.** This lesson only reads.
 
 ---
 
@@ -279,10 +279,10 @@ same idea applied inside an aggregate.)
 
 ---
 
-## 3. Your turn
+## 3. Practical Exercises
 
 Do these in Jasper SQL Playground against `data/chinook.db`. This lesson only
-reads, so no reset is needed. Check `answers.md` when done.
+reads, so no reset is needed. Check `answers_practical.md` when done.
 
 1. How many **albums** are there? Then: what's the average track length in
    milliseconds across the whole `Track` table?
@@ -297,7 +297,7 @@ reads, so no reset is needed. Check `answers.md` when done.
 
 ## 4. Quiz
 
-Answer without scrolling up. The key is in `answers.md`.
+Answer without scrolling up. The key is in `answers_quiz.md`.
 
 1. Write a query that returns the **total revenue** (`SUM(Total)`) per
    billing country, biggest spenders first. (No `HAVING` needed here — just

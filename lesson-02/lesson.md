@@ -368,10 +368,10 @@ The difference — 58 vs 9 — is exactly the 49 customers with `Company` NULL
 (58 − 9 = 49). If a number in a report is mysteriously too small, this is
 the first thing to check.
 
-## 3. Your turn
+## 3. Practical Exercises
 
-Open-ended; run them in Jasper SQL Playground and judge your own output against what you
-now understand. No answers in this file.
+Write and run these in Jasper SQL Playground, then compare your results with
+`answers_practical.md`.
 
 1. List the German customers (names and country).
 2. List tracks that cost exactly 1.99, in alphabetical order, first 5.
@@ -385,7 +385,7 @@ now understand. No answers in this file.
 
 ## 4. Quiz
 
-Write a query for each, run it, compare your **output** to `answers.md`.
+Write a query for each, run it, compare your **output** to `answers_quiz.md`.
 Many correct phrasings exist; the key shows one good one and notes what
 would *not* count.
 

@@ -100,7 +100,7 @@ Track                        table
 ```
 
 
-Eleven tables and eleven indexes — and **zero views**. Every index name starts with `IFK_` ("index-foreign-key"): Chinook's exporter created an index on each foreign-key column. (A twelfth object exists but the filter hides it: `sqlite_autoindex_PlaylistTrack_1`, SQLite's own index enforcing `PlaylistTrack`'s `UNIQUE(PlaylistId, TrackId)` — you'll meet it in `Your turn` T6, where it's the one index you can't `DROP`.)
+Eleven tables and eleven indexes — and **zero views**. Every index name starts with `IFK_` ("index-foreign-key"): Chinook's exporter created an index on each foreign-key column. (A twelfth object exists but the filter hides it: `sqlite_autoindex_PlaylistTrack_1`, SQLite's own index enforcing `PlaylistTrack`'s `UNIQUE(PlaylistId, TrackId)` — you'll meet it in Practical Exercise T6, where it's the one index you can't `DROP`.)
 
 ### Example 2 — declared types are a promise, not a rule
 
@@ -601,10 +601,10 @@ COUNT(*)
 
 ---
 
-## 3. Your turn
+## 3. Practical Exercises
 
 Work in Jasper SQL Playground against a fresh load of `data/chinook.db` so the
-outputs match. Check `answers.md` when you're done.
+outputs match. Check `answers_practical.md` when you're done.
 
 1. Print the declared schema of `Invoice` with `PRAGMA table_info(Invoice);`. For `Total` and `InvoiceDate`, what does `typeof()` report for a real row — and which affinity does each declared type map to?
 2. In the in-memory database, create a table `Feedback` with these columns and **all five constraint kinds present**: `FeedbackId INTEGER PRIMARY KEY`, `Source TEXT NOT NULL`, `Score NUMERIC CHECK (Score BETWEEN 1 AND 5)`, `Handle TEXT UNIQUE`, and `CustomerRef INTEGER REFERENCES Customer(CustomerId)`. Insert one valid row, then try to break each constraint once and note the five different errors.
@@ -617,7 +617,7 @@ outputs match. Check `answers.md` when you're done.
 
 ## 4. Quiz
 
-Answer without scrolling up. The key is in `answers.md`.
+Answer without scrolling up. The key is in `answers_quiz.md`.
 
 1. In one sentence: what is the difference between a column's *declared type* and its *storage class* in SQLite?
 2. You open a fresh Jasper database session and `INSERT` a row into

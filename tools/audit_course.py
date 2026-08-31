@@ -81,7 +81,7 @@ TEMPLATE_BLOCKS = {
     ("lesson-02/lesson.md", 3),
     ("lesson-02/lesson.md", 4),
     ("lesson-03/lesson.md", 7),
-    ("lesson-06/answers.md", 2),
+    ("lesson-06/answers_quiz.md", 1),
 }
 
 EXPECTED_ERROR_BLOCKS = {
@@ -105,7 +105,8 @@ def course_documents(root: Path):
     for number in range(1, 11):
         folder = f"lesson-{number:02d}"
         documents.extend((Document(f"{folder}/lesson.md", "chinook"),
-                          Document(f"{folder}/answers.md", "chinook")))
+                          Document(f"{folder}/answers_practical.md", "chinook"),
+                          Document(f"{folder}/answers_quiz.md", "chinook")))
     documents.extend((
         Document("final-test/answers.md", "northwind"),
         Document("final-test/guided-solutions.md", "northwind"),

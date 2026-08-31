@@ -7,7 +7,7 @@ operators**: `UNION`, `UNION ALL`, `INTERSECT`, `EXCEPT`. Set operators
 treat query results like sets of rows and combine them the way you'd combine
 circles in a Venn diagram.
 
-**No scratch copy needed.** This lesson only reads.
+**No reset needed.** This lesson only reads.
 
 ---
 
@@ -451,10 +451,10 @@ operator.)
 
 ---
 
-## 3. Your turn
+## 3. Practical Exercises
 
 Do these in Jasper SQL Playground against `data/chinook.db`. This lesson only
-reads, so no reset is needed. Answers in `answers.md`.
+reads, so no reset is needed. Answers in `answers_practical.md`.
 
 1. **Cross join, on purpose.** How many rows does
    `SELECT * FROM MediaType, Genre` produce? (No `JOIN` at all — that's a

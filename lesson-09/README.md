@@ -8,7 +8,8 @@ because `DATETIME` is just `TEXT`.
 
 **Keywords this lesson:** storage class, type affinity, `typeof()`, `PRIMARY KEY`, `NOT NULL`, `UNIQUE`, `CHECK`, `FOREIGN KEY`, `PRAGMA foreign_keys`, `rowid`, `ALTER TABLE`, `RENAME COLUMN` / `RENAME TABLE`, `sqlite_master`, `PRAGMA table_info`, `PRAGMA foreign_key_list`, `CREATE VIEW`, `EXPLAIN QUERY PLAN`, autoindex
 
-**Files in this folder:** `lesson.md`, `answers.md` (quiz + your-turn key), `manual-verify.json`, and `expect-errors.json`.
+**Files in this folder:** `lesson.md`, `answers_practical.md`,
+`answers_quiz.md`, `manual-verify.json`, and `expect-errors.json`.
 
 **Before you start** — this lesson *writes*. Open Jasper SQL Playground and
 load `data/chinook.db`. Work in its in-memory copy; reload the original file

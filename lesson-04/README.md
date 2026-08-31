@@ -8,10 +8,10 @@ data to a spreadsheet.
 
 **Prerequisite:** Lessons 01–02 (`SELECT`/`ORDER BY`, `WHERE`).
 
-**Files:** `lesson.md` (everything, including the quiz) · `answers.md`
-(quiz + your-turn answers)
+**Files:** `lesson.md` (everything, including the quiz),
+`answers_practical.md`, and `answers_quiz.md`
 
 **Keywords:** `COUNT`, `SUM`, `AVG`, `MIN`, `MAX`, `GROUP BY`, `HAVING`,
 `DISTINCT`, `ROUND`
 
-**No scratch copy needed** — this lesson only reads.
+**No reset needed** — this lesson only reads.
