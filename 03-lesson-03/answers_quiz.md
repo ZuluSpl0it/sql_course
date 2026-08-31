@@ -68,8 +68,11 @@ cities) or with a `WHERE` that matches more than one row.
 Before:
 
 ```sql
-SELECT COUNT(*) FROM Invoice     WHERE InvoiceId = 10;  -- 1
-SELECT COUNT(*) FROM InvoiceLine WHERE InvoiceId = 10;  -- 6
+SELECT InvoiceId FROM Invoice WHERE InvoiceId = 10;
+SELECT InvoiceLineId, InvoiceId, TrackId
+FROM   InvoiceLine
+WHERE  InvoiceId = 10
+ORDER  BY InvoiceLineId;
 ```
 
 The deletes (children first):
@@ -84,8 +87,11 @@ COMMIT;
 After:
 
 ```sql
-SELECT COUNT(*) FROM Invoice     WHERE InvoiceId = 10;  -- 0
-SELECT COUNT(*) FROM InvoiceLine WHERE InvoiceId = 10;  -- 0
+SELECT InvoiceId FROM Invoice WHERE InvoiceId = 10;
+SELECT InvoiceLineId, InvoiceId, TrackId
+FROM   InvoiceLine
+WHERE  InvoiceId = 10
+ORDER  BY InvoiceLineId;
 ```
 
 Accept `BEGIN`/`COMMIT` as optional here (a failed parent delete would
@@ -98,24 +104,22 @@ Don't accept parent-first ordering.
 ```sql
 BEGIN;
 DELETE FROM Track WHERE TrackId = 1;
-SELECT COUNT(*) FROM Track;     -- during: 3502
+SELECT TrackId, Name FROM Track WHERE TrackId = 1;  -- empty during transaction
 ROLLBACK;
-SELECT COUNT(*) FROM Track;     -- after: 3503
+SELECT TrackId, Name FROM Track WHERE TrackId = 1;  -- row returns after rollback
 ```
 
 ```
-COUNT(*)
---------
-3502
+-- during the transaction: no rows
 
-COUNT(*)
---------
-3503
+TrackId  Name
+-------  ---------------------------------------
+1        For Those About To Rock (We Salute You)
 ```
 
-The point is the pair: 3502 inside the transaction, 3503 after rollback.
-If a student shows only 3503, they probably never deleted; if only 3502,
-they forgot the `ROLLBACK`.
+The point is the pair: the row is absent inside the transaction and returns
+after rollback. If it remains during the transaction, the delete did not
+run; if it is still absent afterward, the student forgot the `ROLLBACK`.
 
 ## Q5 — One transaction: invoice 2 total + "Txn Artist"
 
@@ -126,7 +130,7 @@ INSERT INTO Artist (Name) VALUES ('Txn Artist');
 COMMIT;
 
 SELECT Total FROM Invoice WHERE InvoiceId = 2;
-SELECT COUNT(*) FROM Artist WHERE Name = 'Txn Artist';
+SELECT ArtistId, Name FROM Artist WHERE Name = 'Txn Artist';
 ```
 
 ```
@@ -134,9 +138,9 @@ Total
 -----
 99.99
 
-COUNT(*)
---------
-1
+ArtistId  Name
+--------  ---------
+276       Txn Artist
 ```
 
 Both writes must be between one `BEGIN` and one `COMMIT` — that's the

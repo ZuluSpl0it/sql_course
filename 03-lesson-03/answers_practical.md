@@ -40,14 +40,16 @@ changes()
 4. Delete playlist 18 ("On-The-Go 1") and its one track link:
 
 ```sql
-SELECT COUNT(*) FROM PlaylistTrack WHERE PlaylistId = 18;  -- 1
+SELECT PlaylistId, TrackId FROM PlaylistTrack WHERE PlaylistId = 18;
+SELECT PlaylistId, Name FROM Playlist WHERE PlaylistId = 18;
 
 BEGIN;
 DELETE FROM PlaylistTrack WHERE PlaylistId = 18;
 DELETE FROM Playlist      WHERE PlaylistId = 18;
 COMMIT;
 
-SELECT COUNT(*) FROM Playlist WHERE PlaylistId = 18;       -- 0
+SELECT PlaylistId, TrackId FROM PlaylistTrack WHERE PlaylistId = 18;
+SELECT PlaylistId, Name FROM Playlist WHERE PlaylistId = 18;
 ```
 
 5. Rename "Rock" inside a transaction, then roll back:

@@ -133,7 +133,9 @@ INSERT INTO Artist (Name)
 VALUES ('The Course Test Band');
 
 SELECT last_insert_rowid();
-SELECT COUNT(*) FROM Artist;
+SELECT ArtistId, Name
+FROM   Artist
+WHERE  Name = 'The Course Test Band';
 ```
 
 ```
@@ -141,9 +143,9 @@ last_insert_rowid()
 -------------------
 276
 
-COUNT(*)
---------
-276
+ArtistId  Name
+--------  ---------------------
+276       The Course Test Band
 ```
 
 The table had 275 artists; the new one got id 276. The row is live
@@ -157,13 +159,17 @@ INSERT INTO Artist (Name)
 VALUES ('Second Test Artist'),
        ('Third Test Artist');
 
-SELECT COUNT(*) FROM Artist;
+SELECT ArtistId, Name
+FROM   Artist
+WHERE  Name IN ('Second Test Artist', 'Third Test Artist')
+ORDER  BY ArtistId;
 ```
 
 ```
-COUNT(*)
---------
-278
+ArtistId  Name
+--------  ------------------
+277       Second Test Artist
+278       Third Test Artist
 ```
 
 Two statements' worth of rows in one statement. One transaction, one
@@ -191,26 +197,30 @@ changes()
 8
 ```
 
-Then check:
+Then inspect the rows that were updated:
 
 ```sql
-SELECT City, COUNT(*)
+SELECT CustomerId, FirstName, LastName, City
 FROM   Customer
 WHERE  Country = 'Canada'
-GROUP  BY City;
+ORDER  BY CustomerId;
 ```
 
 ```
-City         COUNT(*)
------------  --------
-Vancouver    8
+CustomerId  FirstName   LastName   City
+----------  ----------  ---------  ---------
+3           François    Tremblay   Vancouver
+14          Mark        Philips    Vancouver
+15          Jennifer    Peterson   Vancouver
+29          Robert      Brown      Vancouver
+30          Edward      Francis    Vancouver
+31          Martha      Silk       Vancouver
+32          Aaron       Mitchell   Vancouver
+33          Ellie       Sullivan   Vancouver
 ```
 
-Canada has 8 customers, one per city; the `WHERE` narrowed the update to
-exactly those 8, and `changes()` confirmed it. (The `GROUP BY City` and
-`COUNT(*)` here are a small peek at Lesson 04 — they're just making the
-result readable; you could also list the rows and count by eye.) We'll roll
-this back in Example 5.
+The `WHERE` narrowed the update to these eight rows, and `changes()` confirmed
+it. We'll roll this back in Example 5.
 
 ### Example 4 — the UPDATE with no WHERE
 
@@ -298,16 +308,22 @@ Goal: remove invoice 10 — but its 6 line items reference it, so they go
 first.
 
 ```sql
-SELECT COUNT(*) FROM Invoice    WHERE InvoiceId = 10;   -- 1
-SELECT COUNT(*) FROM InvoiceLine WHERE InvoiceId = 10;  -- 6
+SELECT InvoiceId FROM Invoice WHERE InvoiceId = 10;
+SELECT InvoiceLineId, InvoiceId, TrackId
+FROM   InvoiceLine
+WHERE  InvoiceId = 10
+ORDER  BY InvoiceLineId;
 
 BEGIN;
 DELETE FROM InvoiceLine WHERE InvoiceId = 10;
 DELETE FROM Invoice     WHERE InvoiceId = 10;
 COMMIT;
 
-SELECT COUNT(*) FROM Invoice    WHERE InvoiceId = 10;   -- 0
-SELECT COUNT(*) FROM InvoiceLine WHERE InvoiceId = 10;  -- 0
+SELECT InvoiceId FROM Invoice WHERE InvoiceId = 10;
+SELECT InvoiceLineId, InvoiceId, TrackId
+FROM   InvoiceLine
+WHERE  InvoiceId = 10
+ORDER  BY InvoiceLineId;
 ```
 
 The child table (`InvoiceLine`) is emptied first; then the parent row is
@@ -327,7 +343,7 @@ INSERT  INTO Artist (Name) VALUES ('Txn Artist');
 COMMIT;
 
 SELECT Total FROM Invoice WHERE InvoiceId = 2;
-SELECT COUNT(*) FROM Artist WHERE Name = 'Txn Artist';
+SELECT ArtistId, Name FROM Artist WHERE Name = 'Txn Artist';
 ```
 
 ```
@@ -335,9 +351,9 @@ Total
 -----
 99.99
 
-COUNT(*)
---------
-1
+ArtistId  Name
+--------  ---------
+276       Txn Artist
 ```
 
 Both writes stand or fall together. Had the `INSERT` failed, the `COMMIT`
