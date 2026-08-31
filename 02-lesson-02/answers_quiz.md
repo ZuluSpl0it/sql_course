@@ -5,23 +5,24 @@ against `12-data/chinook.db`; expected outputs verified against the database
 as shipped in this repo. Compare **outputs**, not query text — many correct
 phrasings exist.
 
-## Q1 — How many customers are in Brazil?
+## Q1 — Customers in Brazil
 
 ```sql
-SELECT COUNT(*)
+SELECT FirstName, LastName, Country
 FROM   Customer
-WHERE  Country = 'Brazil';
+WHERE  Country = 'Brazil'
+ORDER  BY LastName, FirstName;
 ```
 
 ```
-COUNT(*)
---------
-5
+FirstName   LastName    Country
+----------  ----------  -------
+Roberto     Almeida     Brazil
+Luís        Gonçalves   Brazil
+Eduardo     Martins     Brazil
+Fernanda    Ramos       Brazil
+Alexandre   Rocha       Brazil
 ```
-
-Also fine: `SELECT Country, COUNT(*) FROM Customer WHERE Country = 'Brazil'
-GROUP BY Country;`. Don't accept a query without a `WHERE` that counts all
-59 customers.
 
 ## Q2 — US customers with a company on file (names + company)
 
@@ -48,16 +49,19 @@ return 10 extra NULL-company rows.
 ## Q3 — Invoices in 2023 with a total greater than 15.00
 
 ```sql
-SELECT COUNT(*)
+SELECT InvoiceId, InvoiceDate, Total
 FROM   Invoice
 WHERE  InvoiceDate BETWEEN '2023-01-01' AND '2023-12-31'
-  AND  Total > 15.00;
+  AND  Total > 15.00
+ORDER  BY InvoiceDate, InvoiceId;
 ```
 
 ```
-COUNT(*)
---------
-3
+InvoiceId  InvoiceDate          Total
+---------  -------------------  -----
+194        2023-04-28 00:00:00  21.86
+201        2023-05-29 00:00:00  18.86
+208        2023-06-29 00:00:00  15.86
 ```
 
 The three invoices (for reference): 194 → 21.86, 201 → 18.86, 208 → 15.86.
@@ -67,18 +71,24 @@ filter without an end boundary that would include 2024+ (e.g.
 `InvoiceDate LIKE '2023%'` is actually fine here — the strings are
 zero-padded — but `LIKE '2023%'` on a non-padded date format would not be).
 
-## Q4 — How many track titles contain "live" (case-insensitive)?
+## Q4 — First 5 track titles containing "live" (case-insensitive)
 
 ```sql
-SELECT COUNT(*)
+SELECT Name
 FROM   Track
-WHERE  Name LIKE '%live%';
+WHERE  Name LIKE '%live%'
+ORDER  BY Name
+LIMIT  5;
 ```
 
 ```
-COUNT(*)
---------
-44
+Name
+---------------------
+A Novidade (Live)
+Alive
+Breaking The Law (Live)
+Bring'em Back Alive
+Copacabana (Live)
 ```
 
 This is case-insensitive *in SQLite* — so it catches `Live`, `LIVE`,
@@ -116,25 +126,28 @@ Fynn         Zimmermann Germany
 countries. Note the parentheses: without them, `A OR B AND C` would parse
 as `A OR (B AND C)` and return a different set (Pitfall 4).
 
-## Q6 (stretch) — Not with Apple Inc., counting NULL companies as "not Apple"
+## Q6 (stretch) — First 5 customers not with Apple Inc.
 
 ```sql
-SELECT COUNT(*)
+SELECT FirstName, LastName, Company
 FROM   Customer
 WHERE  Company IS NULL
-   OR  Company <> 'Apple Inc.';
+   OR  Company <> 'Apple Inc.'
+ORDER  BY CustomerId
+LIMIT  5;
 ```
 
 ```
-COUNT(*)
---------
-58
+FirstName   LastName       Company
+----------  -------------  ----------------------------------------
+Luís        Gonçalves      Embraer - Empresa Brasileira de Aeronáutica S.A.
+Leonie      Köhler         NULL
+François    Tremblay       NULL
+Bjørn       Hansen         NULL
+František   Wichterlová    JetBrains s.r.o.
 ```
 
-Check the arithmetic: 59 customers − 1 Apple customer = 58. The naive
-`WHERE Company <> 'Apple Inc.'` returns **9** — because it silently drops
-the 49 NULL-company rows (58 − 9 = 49). That gap *is* the lesson: `<>`
-against NULL is UNKNOWN, and WHERE drops UNKNOWN. If a student's answer is
-9, that's the bug to point at.
+The key point is the filter: `<>` alone silently drops NULL-company rows.
+Include `Company IS NULL` when NULL should count as "not Apple."
 
 ---

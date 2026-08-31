@@ -73,10 +73,10 @@ parentheses.
 ### 1.3 Membership — IN and NOT IN
 
 ```sql
-SELECT Country, COUNT(*)
+SELECT FirstName, LastName, Country
 FROM   Customer
 WHERE  Country IN ('France', 'Germany', 'Brazil')
-GROUP  BY Country;
+ORDER  BY Country, LastName, FirstName;
 ```
 
 `x IN (a, b, c)` is shorthand for `x = a OR x = b OR x = c`. Its negation is
@@ -304,69 +304,91 @@ Same words, different result. Parentheses are how you keep them the same.
 Goal: customers from three countries at once.
 
 ```sql
-SELECT Country, COUNT(*) AS how_many
+SELECT FirstName, LastName, Country
 FROM   Customer
 WHERE  Country IN ('France', 'Germany', 'Brazil')
-GROUP  BY Country
-ORDER  BY how_many DESC, Country;
+ORDER  BY Country, LastName, FirstName;
 ```
 
 ```
-Country       how_many
-------------  --------
-Brazil        5
-France        5
-Germany       4
+FirstName    LastName   Country
+-----------  ---------  -------
+Roberto      Almeida    Brazil
+Luís         Gonçalves  Brazil
+Eduardo      Martins    Brazil
+Fernanda     Ramos      Brazil
+Alexandre    Rocha      Brazil
+Camille      Bernard    France
+Marc         Dubois     France
+Wyatt        Girard     France
+Dominique    Lefebvre  France
+Isabelle     Mercier    France
+Leonie       Köhler     Germany
+Hannah       Schneider  Germany
+Niklas       Schröder   Germany
+Fynn         Zimmermann Germany
 ```
 
-14 customers total, grouped by country. (`GROUP BY`/`COUNT` are Lesson 04 —
-here they just make the answer readable; you could also just list the rows.)
-The `IN` list is doing the work of `= 'France' OR = 'Germany' OR = 'Brazil'`.
+These are the 14 matching customers. The `IN` list is doing the work of
+`= 'France' OR = 'Germany' OR = 'Brazil'`.
 
 ### Example 6 — BETWEEN on a date stored as text
 
 Goal: all invoices from 2023.
 
 ```sql
-SELECT COUNT(*)
+SELECT InvoiceId, InvoiceDate, Total
 FROM   Invoice
-WHERE  InvoiceDate BETWEEN '2023-01-01' AND '2023-12-31';
+WHERE  InvoiceDate BETWEEN '2023-01-01' AND '2023-12-31'
+ORDER  BY InvoiceDate, InvoiceId
+LIMIT  5;
 ```
 
 ```
-COUNT(*)
---------
-83
+InvoiceId  InvoiceDate          Total
+---------  -------------------  -----
+167        2023-01-02 00:00:00  0.99
+168        2023-01-15 00:00:00  1.98
+169        2023-01-15 00:00:00  1.98
+170        2023-01-16 00:00:00  3.96
+171        2023-01-17 00:00:00  5.94
 ```
 
 Chinook stores `InvoiceDate` as a text string in `YYYY-MM-DD HH:MM:SS`
 form, which happens to sort chronologically — so a string `BETWEEN` works as
 a date range. Both endpoints are inclusive, and because the month/day parts
-are zero-padded, lexicographic order == calendar order. (You'll see cleaner
-date handling with `strftime`/`date()` in Lesson 08.)
+are zero-padded, lexicographic order == calendar order. This query shows the
+first five matches; you'll see cleaner date handling with
+`strftime`/`date()` in Lesson 08.
 
-### Example 7 — the NOT-equal NULL trap, quantified
+### Example 7 — the NOT-equal NULL trap
 
 Goal: everyone who is *not* Apple Inc. — including people with no company.
 
-Wrong way (drops the 49 NULLs):
+Wrong way (drops customers whose company is NULL):
 
 ```sql
-SELECT COUNT(*) FROM Customer WHERE Company <> 'Apple Inc.';   -- 9
+SELECT FirstName, LastName, Company
+FROM   Customer
+WHERE  Company <> 'Apple Inc.'
+ORDER  BY CustomerId
+LIMIT  5;
 ```
 
 Right way (keeps them):
 
 ```sql
-SELECT COUNT(*)
+SELECT FirstName, LastName, Company
 FROM   Customer
 WHERE  Company IS NULL
-   OR  Company <> 'Apple Inc.';                                 -- 58
+   OR  Company <> 'Apple Inc.'
+ORDER  BY CustomerId
+LIMIT  5;
 ```
 
-The difference — 58 vs 9 — is exactly the 49 customers with `Company` NULL
-(58 − 9 = 49). If a number in a report is mysteriously too small, this is
-the first thing to check.
+The first query silently omits NULL-company customers. The second keeps them.
+If a filtered result is mysteriously too small, this is the first thing to
+check.
 
 ## 3. Practical Exercises
 
@@ -376,9 +398,8 @@ Write and run these in Jasper SQL Playground, then compare your results with
 1. List the German customers (names and country).
 2. List tracks that cost exactly 1.99, in alphabetical order, first 5.
 3. List customers who are in Canada **and** have a company on file.
-4. List the distinct countries that have more than 2 customers.
-   (You may peek at Lesson 04's `GROUP BY`/`HAVING` if you want — or list
-   the rows and count by eye.)
+4. List the distinct countries represented by customers in France, Germany,
+   or Brazil.
 5. List playlist names that start with "Classical".
 6. (stretch) List track titles that contain the word "Live" *anywhere*,
    case-insensitive, first 5.
@@ -413,8 +434,8 @@ reliably; the data changes and so does your answer.
 `LIKE 'a%b'` matches any string starting with `a` and ending with `b`,
 including `ab`. It is not a regular expression (no `.*`, no `+`, no
 `[...]`). And a lone `%` matches everything — `WHERE Name LIKE '%'` is the
-same as no filter at all, which is a handy "count the table" trick but a
-shocking one if you meant a literal percent sign.
+same as no filter at all, which is shocking if you meant a literal percent
+sign.
 
 **Pitfall 6 — Quotes around numbers (and vice versa) — the silent cast.**
 `WHERE UnitPrice > '1'` works in SQLite (it casts the text to a number) but
@@ -444,14 +465,14 @@ Write a query for each, run it, compare your **output** to `answers_quiz.md`.
 Many correct phrasings exist; the key shows one good one and notes what
 would *not* count.
 
-1. How many customers are in Brazil?
+1. List the customers in Brazil (names and country).
 2. List the US customers who have a company on file — names and company.
-3. How many invoices in 2023 had a total greater than 15.00?
-4. How many track titles contain the word "live" (case-insensitive)?
+3. List the invoices in 2023 with a total greater than 15.00.
+4. List the first 5 track titles containing the word "live" (case-insensitive).
 5. List the customers in France or Germany who have **no** company on file.
    (Names and country.)
-6. (stretch) How many customers are *not* with Apple Inc., counting people
-   with no company as "not Apple"?
+6. (stretch) List the first 5 customers who are *not* with Apple Inc.,
+   including people with no company on file.
 
 ## 7. Look ahead
 

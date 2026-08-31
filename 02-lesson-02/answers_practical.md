@@ -42,29 +42,24 @@ Canada has 8 customers; those with a company are the Rogers Canada and
 Telus ones (2 rows — François Tremblay has a NULL company, so the IS NOT
 NULL filter is doing real work here).
 
-4. Countries with more than 2 customers (peek at Lesson 04):
+4. Distinct countries represented by customers in France, Germany, or Brazil:
 
 ```sql
-SELECT Country, COUNT(*) AS n
+SELECT DISTINCT Country
 FROM   Customer
-GROUP  BY Country
-HAVING COUNT(*) > 2
-ORDER  BY n DESC, Country;
+WHERE  Country IN ('France', 'Germany', 'Brazil')
+ORDER  BY Country;
 ```
 
 ```
-Country           n
-----------------  -
-USA               13
-Canada            8
-France            5
-Brazil            5
-Germany           4
-United Kingdom    3
+Country
+-------
+Brazil
+France
+Germany
 ```
 
-(If you listed rows and counted by eye, that's a perfectly valid answer
-for this lesson — the point is the *set* of countries.)
+The result is the set of countries represented by the filtered customers.
 
 5. Playlists starting with "Classical":
 
