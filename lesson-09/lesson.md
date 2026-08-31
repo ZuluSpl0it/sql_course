@@ -615,7 +615,30 @@ outputs match. Check `answers_practical.md` when you're done.
 
 ---
 
-## 4. Quiz
+## 4. Pitfalls
+
+1. **Foreign keys are off unless you say otherwise — every session.** `PRAGMA foreign_keys` is a per-connection setting that defaults to `OFF` and has no database-level default. A schema full of `FOREIGN KEY` clauses enforces nothing in a fresh connection. Make `PRAGMA foreign_keys = ON;` the first line of any script or session that writes to a schema with foreign keys.
+2. **Declared type ≠ stored type.** `NVARCHAR(40)`, `DATETIME`, and `NUMERIC(10,2)` are affinities, not types: they store `TEXT`, `TEXT`, and `REAL`/`INTEGER` respectively. Never assume a column's declared name tells you what `typeof()` will return — ask it. (This is also why Chinook's dates sort correctly as text: they're ISO-format strings.)
+3. **`ALTER TABLE` is a small vocabulary.** In 3.31 you can `ADD COLUMN` (with a default, and with `REFERENCES`), `RENAME COLUMN`, and `RENAME TABLE`. You cannot add `UNIQUE` or `PRIMARY KEY` columns, there is no `ADD CONSTRAINT`, and `DROP COLUMN` doesn't exist until 3.35. Anything else is a rebuild: new table, `INSERT … SELECT`, drop, rename.
+4. **`INTEGER PRIMARY KEY` is the rowid — gaps are normal.** It's an auto-number that always moves to one past the max (Example 4). Deletes create gaps; that's expected, not a bug, and it's why you never *reuse* a deleted id.
+5. **One transaction at a time.** A nested `BEGIN` is an error, not a savepoint (Example 11, block 2). If you need nested all-or-nothing units, that's `SAVEPOINT`, which this course deliberately doesn't use — keep to one `BEGIN` and it's a non-issue.
+6. **`EXPLAIN QUERY PLAN` says *shape*, not speed.** `SCAN TABLE` vs `SEARCH … USING INDEX` tells you whether an index is available, not how fast the query is. A plan that looks worse can still be faster on a small table (reading 59 rows is cheap). You'll weigh these properly in Lesson 10.
+
+---
+
+## 5. Recap
+
+- SQLite has **five storage classes** — `NULL`, `INTEGER`, `REAL`, `TEXT`, `BLOB` — and `typeof(x)` names whichever one a value is.
+- A column's **declared type** only picks an **affinity** (a lossless conversion rule on insert); the stored class is the truth, and Chinook's `NVARCHAR`/`DATETIME`/`NUMERIC(10,2)` store `text`/`text`/`real` or `integer`.
+- `NOT NULL`, `UNIQUE`, and `CHECK` are **always enforced**. `FOREIGN KEY` is enforced **only in a connection where `PRAGMA foreign_keys = ON`** — and that resets to off on every new connection.
+- The schema is readable data: `sqlite_master` holds every object and its `CREATE` text, and `PRAGMA table_info` / `foreign_key_list` give you structured views of it.
+- **`ALTER TABLE` in 3.31**: add a column (with default / `REFERENCES`), rename a column (indexes & FKs follow), rename a table. Nothing else — everything bigger is a rebuild.
+- **DDL is transactional**: `BEGIN … ROLLBACK` undoes `CREATE`/`DROP` just like `INSERT`.
+- **`EXPLAIN QUERY PLAN`** shows `SCAN TABLE` (read everything) vs `SEARCH … USING (COVERING) INDEX` (jump straight to the match) — the before/after that motivates every index you'll evaluate next.
+
+**Next up — Lesson 10 (Performance & the Capstone):** the schema is under your feet, so now the questions get expensive. You'll read `EXPLAIN QUERY PLAN` like a diagnostic, decide which indexes actually earn their keep (and which just slow the writes), and then put the whole course together in a multi-part report and a graded end-of-course project.
+
+## 6. Quiz
 
 Answer without scrolling up. The key is in `answers_quiz.md`.
 
@@ -628,26 +651,3 @@ Answer without scrolling up. The key is in `answers_quiz.md`.
 6. (Stretch) Why can you `DROP INDEX idx_cust_country` but not `DROP INDEX sqlite_autoindex_PlaylistTrack_1`?
 
 ---
-
-## 5. Pitfalls
-
-1. **Foreign keys are off unless you say otherwise — every session.** `PRAGMA foreign_keys` is a per-connection setting that defaults to `OFF` and has no database-level default. A schema full of `FOREIGN KEY` clauses enforces nothing in a fresh connection. Make `PRAGMA foreign_keys = ON;` the first line of any script or session that writes to a schema with foreign keys.
-2. **Declared type ≠ stored type.** `NVARCHAR(40)`, `DATETIME`, and `NUMERIC(10,2)` are affinities, not types: they store `TEXT`, `TEXT`, and `REAL`/`INTEGER` respectively. Never assume a column's declared name tells you what `typeof()` will return — ask it. (This is also why Chinook's dates sort correctly as text: they're ISO-format strings.)
-3. **`ALTER TABLE` is a small vocabulary.** In 3.31 you can `ADD COLUMN` (with a default, and with `REFERENCES`), `RENAME COLUMN`, and `RENAME TABLE`. You cannot add `UNIQUE` or `PRIMARY KEY` columns, there is no `ADD CONSTRAINT`, and `DROP COLUMN` doesn't exist until 3.35. Anything else is a rebuild: new table, `INSERT … SELECT`, drop, rename.
-4. **`INTEGER PRIMARY KEY` is the rowid — gaps are normal.** It's an auto-number that always moves to one past the max (Example 4). Deletes create gaps; that's expected, not a bug, and it's why you never *reuse* a deleted id.
-5. **One transaction at a time.** A nested `BEGIN` is an error, not a savepoint (Example 11, block 2). If you need nested all-or-nothing units, that's `SAVEPOINT`, which this course deliberately doesn't use — keep to one `BEGIN` and it's a non-issue.
-6. **`EXPLAIN QUERY PLAN` says *shape*, not speed.** `SCAN TABLE` vs `SEARCH … USING INDEX` tells you whether an index is available, not how fast the query is. A plan that looks worse can still be faster on a small table (reading 59 rows is cheap). You'll weigh these properly in Lesson 10.
-
----
-
-## 6. Recap
-
-- SQLite has **five storage classes** — `NULL`, `INTEGER`, `REAL`, `TEXT`, `BLOB` — and `typeof(x)` names whichever one a value is.
-- A column's **declared type** only picks an **affinity** (a lossless conversion rule on insert); the stored class is the truth, and Chinook's `NVARCHAR`/`DATETIME`/`NUMERIC(10,2)` store `text`/`text`/`real` or `integer`.
-- `NOT NULL`, `UNIQUE`, and `CHECK` are **always enforced**. `FOREIGN KEY` is enforced **only in a connection where `PRAGMA foreign_keys = ON`** — and that resets to off on every new connection.
-- The schema is readable data: `sqlite_master` holds every object and its `CREATE` text, and `PRAGMA table_info` / `foreign_key_list` give you structured views of it.
-- **`ALTER TABLE` in 3.31**: add a column (with default / `REFERENCES`), rename a column (indexes & FKs follow), rename a table. Nothing else — everything bigger is a rebuild.
-- **DDL is transactional**: `BEGIN … ROLLBACK` undoes `CREATE`/`DROP` just like `INSERT`.
-- **`EXPLAIN QUERY PLAN`** shows `SCAN TABLE` (read everything) vs `SEARCH … USING (COVERING) INDEX` (jump straight to the match) — the before/after that motivates every index you'll evaluate next.
-
-**Next up — Lesson 10 (Performance & the Capstone):** the schema is under your feet, so now the questions get expensive. You'll read `EXPLAIN QUERY PLAN` like a diagnostic, decide which indexes actually earn their keep (and which just slow the writes), and then put the whole course together in a multi-part report and a graded end-of-course project.

@@ -233,27 +233,7 @@ reads, so no reset is needed. Answers in `answers_practical.md`.
    (`JULIANDAY` difference divided by 365.25, rounded), and show the
    three oldest-at-hire.
 ---
-## 4. Quiz
-1. What does `'2021-01-01' + 7` evaluate to, and *why*? What about
-   `'abc' + 1`? (Pitfall 1 is the lesson; this is the mechanism.)
-2. `Track` has 977 rows with `Composer IS NULL`. How many rows do
-   `WHERE Composer = NULL` and `WHERE Composer IS NULL` each return, and
-   what does `=` actually produce when one side is `NULL`?
-3. `DATE('2021-02-29')` returns the text `'2021-02-29'` — a date that
-   does not exist — while `DATE('2021-13-01')` returns `NULL`. What is
-   SQLite actually validating, and what is it not?
-4. In SQLite 3.31, what are `7 / 2`, `-7 / 2`, and `7 * 1.0 / 2`? When
-   does the difference between them matter for a report?
-5. In one sentence each: what is `COALESCE(a, b)`, and what is
-   `NULLIF(a, b)`? Which of the two turns an empty string into `NULL`,
-   and which turns `NULL` into a default?
-6. **Stretch.** `STRFTIME('%w', InvoiceDate)` gives `0` for Sunday and `6`
-   for Saturday. How many of the 412 invoices fall on weekends? Why would
-   using `%W` (capital) be wrong even though it also starts at something
-   small? And what does `STRFTIME('%Q', …)` — a code that doesn't exist —
-   return, and what does that make it dangerous?
----
-## 5. Pitfalls
+## 4. Pitfalls
 1. **Dates are text, so `+` does number tricks, not calendar tricks.**
    `+` on a date string first coerces the string to a number by taking
    its *leading numeric prefix* — `'2021-01-01'` becomes `2021` — and the
@@ -378,7 +358,7 @@ both as missing. Practical exercise #4 checks that this data needs no such fix, 
 knowing that is the whole point.
 
 ---
-## 6. Recap
+## 5. Recap
 - **An expression is a value:** literal, column, arithmetic, function, or
   `CASE`; it evaluates to one of the five storage classes, and most
   functions map `NULL` in → `NULL` out.
@@ -407,3 +387,24 @@ you've been reading as text all along (`NVARCHAR(40)`, `DATETIME`,
 five storage classes this lesson has been living in. It's the first
 write-lesson since Lesson 03: you'll reload `data/chinook.db` for a clean
 database before touching anything.
+
+## 6. Quiz
+1. What does `'2021-01-01' + 7` evaluate to, and *why*? What about
+   `'abc' + 1`? (Pitfall 1 is the lesson; this is the mechanism.)
+2. `Track` has 977 rows with `Composer IS NULL`. How many rows do
+   `WHERE Composer = NULL` and `WHERE Composer IS NULL` each return, and
+   what does `=` actually produce when one side is `NULL`?
+3. `DATE('2021-02-29')` returns the text `'2021-02-29'` — a date that
+   does not exist — while `DATE('2021-13-01')` returns `NULL`. What is
+   SQLite actually validating, and what is it not?
+4. In SQLite 3.31, what are `7 / 2`, `-7 / 2`, and `7 * 1.0 / 2`? When
+   does the difference between them matter for a report?
+5. In one sentence each: what is `COALESCE(a, b)`, and what is
+   `NULLIF(a, b)`? Which of the two turns an empty string into `NULL`,
+   and which turns `NULL` into a default?
+6. **Stretch.** `STRFTIME('%w', InvoiceDate)` gives `0` for Sunday and `6`
+   for Saturday. How many of the 412 invoices fall on weekends? Why would
+   using `%W` (capital) be wrong even though it also starts at something
+   small? And what does `STRFTIME('%Q', …)` — a code that doesn't exist —
+   return, and what does that make it dangerous?
+---

@@ -375,25 +375,7 @@ Work in Jasper SQL Playground against `data/chinook.db` (this lesson only reads)
 
 ---
 
-## 4. Quiz
-
-Answer without scrolling up. The key is in `answers_quiz.md`.
-
-1. In one sentence, what does an `INNER JOIN` drop from the result?
-2. Why did the self-join in Example 3 use `LEFT JOIN` instead of
-   `INNER JOIN`? What would `INNER JOIN` have done to the top boss?
-3. You join `Invoice` to `InvoiceLine` and `SUM(Invoice.Total)`, and the
-   number is about 9× too large. In one sentence, why?
-4. Write the query that lists every **artist who has no albums** (just the
-   artist names).
-5. True or false: `JOIN` and `INNER JOIN` mean the same thing.
-6. (Stretch) In one query, show each employee, their manager, and how many
-   employees report *directly* to that manager. (A self join plus
-   `COUNT`.)
-
----
-
-## 5. Pitfalls
+## 4. Pitfalls
 
 1. **Joining without an `ON` gives you a cross join** — every row paired
    with every other row. `SELECT * FROM Track t, Album a` (no `ON`) is
@@ -428,7 +410,7 @@ Answer without scrolling up. The key is in `answers_quiz.md`.
 
 ---
 
-## 6. Recap
+## 5. Recap
 
 - A **primary key** identifies a row; a **foreign key** points at another
   table's primary key. Joins connect them: `ON <left>.<fk> = <right>.<pk>`.
@@ -439,6 +421,24 @@ Answer without scrolling up. The key is in `answers_quiz.md`.
 - A **self join** uses two aliases of the same table (the org chart).
 - **Fan-out:** a one-to-many join repeats the one-side row; never aggregate
   a one-side column across such a join without care.
+
+## 6. Quiz
+
+Answer without scrolling up. The key is in `answers_quiz.md`.
+
+1. In one sentence, what does an `INNER JOIN` drop from the result?
+2. Why did the self-join in Example 3 use `LEFT JOIN` instead of
+   `INNER JOIN`? What would `INNER JOIN` have done to the top boss?
+3. You join `Invoice` to `InvoiceLine` and `SUM(Invoice.Total)`, and the
+   number is about 9× too large. In one sentence, why?
+4. Write the query that lists every **artist who has no albums** (just the
+   artist names).
+5. True or false: `JOIN` and `INNER JOIN` mean the same thing.
+6. (Stretch) In one query, show each employee, their manager, and how many
+   employees report *directly* to that manager. (A self join plus
+   `COUNT`.)
+
+---
 
 ## 7. Look ahead
 

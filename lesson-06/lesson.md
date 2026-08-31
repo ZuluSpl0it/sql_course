@@ -475,30 +475,7 @@ reads, so no reset is needed. Answers in `answers_practical.md`.
 
 ---
 
-## 4. Quiz
-
-1. `Employee` has 8 rows and `Genre` has 25. How many rows does
-   `SELECT * FROM Employee, Genre` return — and would the result be
-   useful?
-2. SQLite answers `Error: RIGHT and FULL OUTER JOINs are not currently
-   supported`. Name the supported join that keeps **all rows from the
-   right table** (hint: swap the tables), and say what you'd write in
-   SQLite to get a full outer join instead.
-3. `UNION` and `UNION ALL` over two queries returning 30 and 10 rows each,
-   with 4 identical rows in common. How many rows does each operator
-   return?
-4. `INTERSECT` compares the two queries' rows. Are the column **names**,
-   the column **positions**, or the **tables the rows came from** what get
-   compared?
-5. `A EXCEPT B` returns 0 rows. What can you conclude about A and B? Now
-   `B EXCEPT A` also returns 0 — what can you conclude now?
-6. **Stretch.** In Example 2's output, how many rows have a blank manager
-   and how many have a blank report? Can any row be blank on **both**
-   sides? Why or why not?
-
----
-
-## 5. Pitfalls
+## 4. Pitfalls
 
 1. **Forgetting `ON` doesn't error — it multiplies.** `FROM Track t,
    Album a` runs happily and produces 1,215,541 garbage rows (Example 1).
@@ -536,7 +513,7 @@ reads, so no reset is needed. Answers in `answers_practical.md`.
 
 ---
 
-## 6. Recap
+## 5. Recap
 
 - **`CROSS JOIN`** pairs every row with every row — 8 × 25 = 200. Legit
   for small option grids; the accidental result of a missing `ON`.
@@ -551,6 +528,29 @@ reads, so no reset is needed. Answers in `answers_practical.md`.
   "same string".
 - `A EXCEPT B → 0` proves `A ⊆ B`; both directions → 0 proves `A = B`.
   A small, sharp toolkit for data-quality checks.
+
+## 6. Quiz
+
+1. `Employee` has 8 rows and `Genre` has 25. How many rows does
+   `SELECT * FROM Employee, Genre` return — and would the result be
+   useful?
+2. SQLite answers `Error: RIGHT and FULL OUTER JOINs are not currently
+   supported`. Name the supported join that keeps **all rows from the
+   right table** (hint: swap the tables), and say what you'd write in
+   SQLite to get a full outer join instead.
+3. `UNION` and `UNION ALL` over two queries returning 30 and 10 rows each,
+   with 4 identical rows in common. How many rows does each operator
+   return?
+4. `INTERSECT` compares the two queries' rows. Are the column **names**,
+   the column **positions**, or the **tables the rows came from** what get
+   compared?
+5. `A EXCEPT B` returns 0 rows. What can you conclude about A and B? Now
+   `B EXCEPT A` also returns 0 — what can you conclude now?
+6. **Stretch.** In Example 2's output, how many rows have a blank manager
+   and how many have a blank report? Can any row be blank on **both**
+   sides? Why or why not?
+
+---
 
 ## 7. Look ahead
 

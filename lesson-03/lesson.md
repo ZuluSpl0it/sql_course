@@ -405,23 +405,7 @@ so you start from the same state as the examples. Compare your results with
 6. (stretch) Create a table `ScratchNote (NoteId INTEGER PRIMARY KEY,
    Note TEXT)`, insert three notes, list them.
 
-## 4. Quiz
-
-Reload `data/chinook.db` before starting so the expected outputs below match
-yours. Each question is independent; answer keys are in `answers_quiz.md`.
-
-1. Insert an artist named "Quiz New Artist". Show its id and name.
-2. Change customer 5's city to "Montreal". Show the city before and after.
-3. Delete invoice 10 and its line items (in the safe order). Show the
-   counts before and after.
-4. Inside a transaction, delete track 1. Then `ROLLBACK`. Show the track
-   count after the delete and after the rollback.
-5. In one transaction: set invoice 2's total to 99.99 **and** insert an
-   artist named "Txn Artist". `COMMIT`. Show both results.
-6. (stretch) Create the `AuditLog` table from Example 8 (use
-   `CREATE TABLE IF NOT EXISTS`), insert a row, and show it.
-
-## 5. Pitfalls
+## 4. Pitfalls
 
 **Pitfall 1 — `UPDATE`/`DELETE` without `WHERE`.**
 They run. They affect every row. There is no confirmation prompt. Habit:
@@ -467,7 +451,7 @@ It returns the id of the last insert *in this connection*. Fine for the
 row you just added; meaningless for "who's the latest artist overall" —
 for that use `SELECT ArtistId FROM Artist ORDER BY ArtistId DESC LIMIT 1`.
 
-## 6. Recap
+## 5. Recap
 
 - `INSERT INTO t (cols) VALUES (vals)` — add rows; multiple value lists in
   one statement; `last_insert_rowid()` for the assigned key.
@@ -482,6 +466,22 @@ for that use `SELECT ArtistId FROM Artist ORDER BY ArtistId DESC LIMIT 1`.
 - `CREATE TABLE` with `INTEGER PRIMARY KEY` gives you auto-numbered keys.
 - SQLite FKs need `PRAGMA foreign_keys = ON;` each session.
 - Work in Jasper's in-memory copy; the course DB stays pristine.
+
+## 6. Quiz
+
+Reload `data/chinook.db` before starting so the expected outputs below match
+yours. Each question is independent; answer keys are in `answers_quiz.md`.
+
+1. Insert an artist named "Quiz New Artist". Show its id and name.
+2. Change customer 5's city to "Montreal". Show the city before and after.
+3. Delete invoice 10 and its line items (in the safe order). Show the
+   counts before and after.
+4. Inside a transaction, delete track 1. Then `ROLLBACK`. Show the track
+   count after the delete and after the rollback.
+5. In one transaction: set invoice 2's total to 99.99 **and** insert an
+   artist named "Txn Artist". `COMMIT`. Show both results.
+6. (stretch) Create the `AuditLog` table from Example 8 (use
+   `CREATE TABLE IF NOT EXISTS`), insert a row, and show it.
 
 ## 7. Look ahead
 

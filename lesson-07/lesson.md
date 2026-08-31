@@ -321,29 +321,7 @@ reads, so no reset is needed. Answers in `answers_practical.md`.
    artist a `revenue_rank` (1 = highest revenue) by counting how many
    artists earn more, and show the top 5.
 ---
-## 4. Quiz
-1. A scalar subquery in the `SELECT` list — what exactly must it return for
-   the query to be well-formed?
-2. `Employee` has 8 rows. Compare
-   `WHERE EmployeeId IN (SELECT EmployeeId FROM Employee ORDER BY EmployeeId LIMIT 2)`
-   with `WHERE EmployeeId = (SELECT EmployeeId FROM Employee ORDER BY EmployeeId LIMIT 2)`.
-   How many rows does each return, and why do they differ?
-3. In SQLite 3.31, what does `WHERE x = (a subquery that returns 2 rows)`
-   do? (Contrast with what MySQL/PostgreSQL do.)
-4. `Employee.ReportsTo` is `NULL` for exactly one row (the CEO). Compare
-   `NOT IN (SELECT ReportsTo FROM Employee)` with
-   `NOT EXISTS (SELECT 1 FROM Employee r WHERE r.ReportsTo = e.EmployeeId)`
-   for "employees nobody reports to". How many rows does each return, and
-   why do they differ?
-5. When would you reach for a `WITH` instead of a derived table (or a plain
-   inline subquery)?
-6. **Stretch.** The recursive org chart in Example 5 returns 8 rows with a
-   max depth of 2. How many rows would it return if the anchor matched
-   *zero* employees (say `WHERE EmployeeId = 999`)? And if the data had a
-   *cycle* (an employee who reports, directly or indirectly, back to
-   themselves), what would the query do — and how do you keep it safe?
----
-## 5. Pitfalls
+## 4. Pitfalls
 1. **A multi-row "scalar" silently returns the first row.** In SQLite 3.31
    a subquery used where a *single value* is expected — in the `SELECT`
    list or a `WHERE x = (…)` — does **not** error even when it returns
@@ -459,7 +437,7 @@ COUNT(*)
 never started. A recursive query that "works" but returns nothing almost
 always means the anchor is wrong. Verify the anchor by itself first:
 `SELECT … FROM Employee WHERE <your anchor>`.---
-## 6. Recap
+## 5. Recap
 - **A subquery is a `SELECT` used inside another `SELECT`**, in one of three
   slots: the `SELECT` list (a scalar value), the `WHERE` clause (`IN` / `EXISTS`),
   or the `FROM` clause (a **derived table**).
@@ -478,3 +456,26 @@ always means the anchor is wrong. Verify the anchor by itself first:
 Next up, **Lesson 08: Expressions & functions** — leaving row-level SQL and
 starting to *shape* each value: `CASE`, string and date functions, and
 `CAST`/`COALESCE`.
+
+## 6. Quiz
+1. A scalar subquery in the `SELECT` list — what exactly must it return for
+   the query to be well-formed?
+2. `Employee` has 8 rows. Compare
+   `WHERE EmployeeId IN (SELECT EmployeeId FROM Employee ORDER BY EmployeeId LIMIT 2)`
+   with `WHERE EmployeeId = (SELECT EmployeeId FROM Employee ORDER BY EmployeeId LIMIT 2)`.
+   How many rows does each return, and why do they differ?
+3. In SQLite 3.31, what does `WHERE x = (a subquery that returns 2 rows)`
+   do? (Contrast with what MySQL/PostgreSQL do.)
+4. `Employee.ReportsTo` is `NULL` for exactly one row (the CEO). Compare
+   `NOT IN (SELECT ReportsTo FROM Employee)` with
+   `NOT EXISTS (SELECT 1 FROM Employee r WHERE r.ReportsTo = e.EmployeeId)`
+   for "employees nobody reports to". How many rows does each return, and
+   why do they differ?
+5. When would you reach for a `WITH` instead of a derived table (or a plain
+   inline subquery)?
+6. **Stretch.** The recursive org chart in Example 5 returns 8 rows with a
+   max depth of 2. How many rows would it return if the anchor matched
+   *zero* employees (say `WHERE EmployeeId = 999`)? And if the data had a
+   *cycle* (an employee who reports, directly or indirectly, back to
+   themselves), what would the query do — and how do you keep it safe?
+---

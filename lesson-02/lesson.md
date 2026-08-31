@@ -383,22 +383,7 @@ Write and run these in Jasper SQL Playground, then compare your results with
 6. (stretch) List track titles that contain the word "Live" *anywhere*,
    case-insensitive, first 5.
 
-## 4. Quiz
-
-Write a query for each, run it, compare your **output** to `answers_quiz.md`.
-Many correct phrasings exist; the key shows one good one and notes what
-would *not* count.
-
-1. How many customers are in Brazil?
-2. List the US customers who have a company on file — names and company.
-3. How many invoices in 2023 had a total greater than 15.00?
-4. How many track titles contain the word "live" (case-insensitive)?
-5. List the customers in France or Germany who have **no** company on file.
-   (Names and country.)
-6. (stretch) How many customers are *not* with Apple Inc., counting people
-   with no company as "not Apple"?
-
-## 5. Pitfalls
+## 4. Pitfalls
 
 **Pitfall 1 — `= NULL` / `= NULL` returns nothing, every time.**
 `x = NULL` is UNKNOWN, and `WHERE` drops UNKNOWN. Use `x IS NULL` (or
@@ -436,7 +421,7 @@ shocking one if you meant a literal percent sign.
 it's a warning sign, and in other databases it can do the *opposite* cast
 and give you wrong answers. Numbers unquoted, text quoted — always.
 
-## 6. Recap
+## 5. Recap
 
 - `WHERE` keeps only rows whose condition is TRUE; it sits after `FROM`,
   before `ORDER BY`.
@@ -452,6 +437,21 @@ and give you wrong answers. Numbers unquoted, text quoted — always.
   NULL`, never `= NULL`.
 - Three-valued logic: any comparison with NULL is UNKNOWN, and WHERE drops
   UNKNOWN — which is why `<>` and `NOT IN` quietly eat your NULL rows.
+
+## 6. Quiz
+
+Write a query for each, run it, compare your **output** to `answers_quiz.md`.
+Many correct phrasings exist; the key shows one good one and notes what
+would *not* count.
+
+1. How many customers are in Brazil?
+2. List the US customers who have a company on file — names and company.
+3. How many invoices in 2023 had a total greater than 15.00?
+4. How many track titles contain the word "live" (case-insensitive)?
+5. List the customers in France or Germany who have **no** company on file.
+   (Names and country.)
+6. (stretch) How many customers are *not* with Apple Inc., counting people
+   with no company as "not Apple"?
 
 ## 7. Look ahead
 

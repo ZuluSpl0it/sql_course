@@ -295,28 +295,7 @@ reads, so no reset is needed. Check `answers_practical.md` when done.
 
 ---
 
-## 4. Quiz
-
-Answer without scrolling up. The key is in `answers_quiz.md`.
-
-1. Write a query that returns the **total revenue** (`SUM(Total)`) per
-   billing country, biggest spenders first. (No `HAVING` needed here — just
-   `GROUP BY` + `ORDER BY`.)
-2. Using `HAVING`, return the `CustomerId`s of customers who have **more
-   than 6 invoices**. (Hint: one customer is the exception — how many does
-   everyone else have?)
-3. Write a query that returns the **average** invoice total per billing
-   country, but **only for countries whose average is above $6**.
-4. True or false: `WHERE COUNT(*) > 5` is valid SQL.
-5. `COUNT(*)` and `COUNT(Composer)` on the `Track` table give different
-   results. Which is larger, and why?
-6. (Stretch) In one query: for each `GenreId`, the number of tracks **and**
-   the total catalog value (`SUM(UnitPrice)`), sorted by total value
-   descending, top 5.
-
----
-
-## 5. Pitfalls
+## 4. Pitfalls
 
 1. **`WHERE` can't see aggregates.** `WHERE SUM(Total) > 100` is an error.
    Row-level filtering happens before grouping; the sum doesn't exist yet.
@@ -354,7 +333,7 @@ Answer without scrolling up. The key is in `answers_quiz.md`.
 
 ---
 
-## 6. Recap
+## 5. Recap
 
 - Five aggregates, all return one value: `COUNT`, `SUM`, `AVG`, `MIN`, `MAX`.
 - `COUNT(*)` counts rows; `COUNT(col)` counts non-NULL values.
@@ -365,6 +344,27 @@ Answer without scrolling up. The key is in `answers_quiz.md`.
   **after** and is where aggregates live.
 - `COUNT(DISTINCT col)` counts unique values.
 - `GROUP BY` doesn't order; add `ORDER BY`.
+
+## 6. Quiz
+
+Answer without scrolling up. The key is in `answers_quiz.md`.
+
+1. Write a query that returns the **total revenue** (`SUM(Total)`) per
+   billing country, biggest spenders first. (No `HAVING` needed here — just
+   `GROUP BY` + `ORDER BY`.)
+2. Using `HAVING`, return the `CustomerId`s of customers who have **more
+   than 6 invoices**. (Hint: one customer is the exception — how many does
+   everyone else have?)
+3. Write a query that returns the **average** invoice total per billing
+   country, but **only for countries whose average is above $6**.
+4. True or false: `WHERE COUNT(*) > 5` is valid SQL.
+5. `COUNT(*)` and `COUNT(Composer)` on the `Track` table give different
+   results. Which is larger, and why?
+6. (Stretch) In one query: for each `GenreId`, the number of tracks **and**
+   the total catalog value (`SUM(UnitPrice)`), sorted by total value
+   descending, top 5.
+
+---
 
 ## 7. Look ahead
 

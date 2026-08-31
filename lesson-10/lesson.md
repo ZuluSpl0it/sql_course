@@ -229,17 +229,7 @@ the work.
 6. Stretch: find one `IFK_` index used by a course query and explain why it
    helps lookup work without enforcing the foreign key itself.
 
-## 4. Quiz
-
-1. What is the difference between `SCAN` and `SEARCH`?
-2. What does `USING COVERING INDEX` mean?
-3. Why does a `SCAN` → `SEARCH` change not prove a timing win?
-4. Why can an index on `Track(Name)` not narrow `LIKE '%The%'`?
-5. Name one cost of an index.
-6. A report joins `InvoiceLine` to `PlaylistTrack` and doubles revenue. What
-   happened, and what should you check first?
-
-## 5. Pitfalls
+## 4. Pitfalls
 
 1. **Indexing before checking correctness.** An index can speed up the wrong
    answer; check keys and row grain first.
@@ -254,7 +244,7 @@ the work.
 6. **Leaving experimental indexes behind.** Name, drop, and verify every
    temporary object.
 
-## 6. Recap
+## 5. Recap
 
 - Read plans for shape: `SCAN`, `SEARCH`, index lookup, covering index, and
   temporary work.
@@ -263,6 +253,16 @@ the work.
 - Start an aggregate from the table matching the report's grain.
 - Use CTEs to name repeated business definitions.
 - Drop temporary indexes and prove they are gone.
+
+## 6. Quiz
+
+1. What is the difference between `SCAN` and `SEARCH`?
+2. What does `USING COVERING INDEX` mean?
+3. Why does a `SCAN` → `SEARCH` change not prove a timing win?
+4. Why can an index on `Track(Name)` not narrow `LIKE '%The%'`?
+5. Name one cost of an index.
+6. A report joins `InvoiceLine` to `PlaylistTrack` and doubles revenue. What
+   happened, and what should you check first?
 
 ## 7. Look ahead
 
