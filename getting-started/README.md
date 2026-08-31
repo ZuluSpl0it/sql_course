@@ -29,6 +29,11 @@ drag `data/chinook.db` from this repository into the page. The file is read
 locally by the browser. The playground's schema panel shows the tables and
 columns available to query.
 
+To view a table's complete contents, expand that table in the schema panel and
+select **`> SELECT *`**. Jasper loads the query into the editor; click **Run**
+to execute it. You can change the query's `LIMIT` value to show more or fewer
+rows.
+
 Type SQL in the editor and use **Run**. You can keep multiple query tabs open
 to compare queries and results.
 
