@@ -11,4 +11,4 @@ __pycache__/
 .worktrees/
 
 # Local agent planning records — not part of the student course
-docs/superpowers/
+docs/
