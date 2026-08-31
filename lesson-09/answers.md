@@ -1,11 +1,9 @@
 # Lesson 09 — Quiz & Your-Turn Answer Key
 
-Attempt `lesson.md` before opening this file. **Reset your scratch copy first** so the outputs match:
+Attempt `lesson.md` before opening this file. **Reload `data/chinook.db` first** so the outputs match:
 
-```bash
-cp data/chinook.db data/chinook-scratch.db
-litecli data/chinook-scratch.db
-```
+Open Jasper SQL Playground and load `data/chinook.db` before running these
+answers.
 
 Expected outputs were verified against the database as shipped (SQLite 3.31.1). Compare **outputs**, not query text.
 

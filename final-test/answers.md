@@ -555,7 +555,7 @@ ORDER  BY discount_class;
 
 ### 43. Country index experiment
 
-Run only on `data/northwind-scratch.db`:
+Run only in a fresh Jasper session with `data/northwind.db` loaded:
 
 ```sql
 EXPLAIN QUERY PLAN

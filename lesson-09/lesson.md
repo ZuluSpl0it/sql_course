@@ -2,14 +2,10 @@
 
 You've been *reading* Chinook for eight lessons. This lesson opens the hood: what a `CREATE TABLE` actually declares, why SQLite's declared types are a promise rather than a rule, and how the five constraint words (`PRIMARY KEY`, `NOT NULL`, `UNIQUE`, `CHECK`, `FOREIGN KEY`) are enforced — and when they *aren't*. You'll also learn what `ALTER TABLE` can and can't do in SQLite 3.31, how to read the schema's own data in `sqlite_master`, and what `EXPLAIN QUERY PLAN` shows before and after you add an index — the bridge into Lesson 10's performance work.
 
-**This lesson writes.** Make a scratch copy first, from the repo root:
-
-```bash
-cp data/chinook.db data/chinook-scratch.db
-litecli data/chinook-scratch.db
-```
-
-On Windows: `copy data\chinook.db data\chinook-scratch.db`. The real `data/chinook.db` stays untouched. The last example of this lesson tears everything down, so when you're done your scratch copy is pristine again.
+**This lesson writes.** Open Jasper SQL Playground and load `data/chinook.db`.
+Work in its in-memory
+copy; reload the original file whenever you need a clean session. The real
+database stays untouched. The last example tears down everything it creates.
 
 ---
 
@@ -302,7 +298,7 @@ COUNT(*)
 ```
 
 
-Read that again: **a `FOREIGN KEY` clause in the DDL does nothing until you turn the pragma on, and it resets to off every time you open a new connection.** Chinook's DDL is full of `FOREIGN KEY` lines; in a default litecli session, none of them are enforced. The bad `ArtistId = 9999` insert was rejected only because the `PRAGMA foreign_keys = ON` in the *same session* was still in effect. Close litecli and open it again, and you can insert `9999` again — silently. The good insert (a real `ArtistId = 1`) is accepted in either case. **If you write any lesson, script, or app that inserts into a table with foreign keys, the first statement must be `PRAGMA foreign_keys = ON`** — there is no database-level setting, and no way to make it the default.
+Read that again: **a `FOREIGN KEY` clause in the DDL does nothing until you turn the pragma on, and it resets to off every time you open a new connection.** Chinook's DDL is full of `FOREIGN KEY` lines; in a default browser session, none of them are enforced. The bad `ArtistId = 9999` insert was rejected only because the `PRAGMA foreign_keys = ON` in the *same session* was still in effect. Reload the database in a new playground session and you can insert `9999` again — silently. The good insert (a real `ArtistId = 1`) is accepted in either case. **If you write any lesson, script, or app that inserts into a table with foreign keys, the first statement must be `PRAGMA foreign_keys = ON`** — there is no database-level setting, and no way to make it the default.
 
 ### Example 7 — reading the foreign-key map
 
@@ -572,7 +568,7 @@ Before the index: `SCAN TABLE Customer` — read all 59 rows. After: `SEARCH TAB
 
 ### Example 14 — tear it all down
 
-Every object this lesson created is yours to remove. `DROP VIEW` / `DROP TABLE` each of them, then confirm the scratch is back to exactly what you started with:
+Every object this lesson created is yours to remove. `DROP VIEW` / `DROP TABLE` each of them, then confirm the in-memory database is back to exactly what you started with:
 
 ```sql
 DROP VIEW   GenreCounts;
@@ -607,10 +603,11 @@ COUNT(*)
 
 ## 3. Your turn
 
-Work in litecli against your scratch copy (`data/chinook-scratch.db`), and start from a pristine one (re-run the `cp` in the intro) so the outputs match. Check `answers.md` when you're done.
+Work in Jasper SQL Playground against a fresh load of `data/chinook.db` so the
+outputs match. Check `answers.md` when you're done.
 
 1. Print the declared schema of `Invoice` with `PRAGMA table_info(Invoice);`. For `Total` and `InvoiceDate`, what does `typeof()` report for a real row — and which affinity does each declared type map to?
-2. On your scratch, create a table `Feedback` with these columns and **all five constraint kinds present**: `FeedbackId INTEGER PRIMARY KEY`, `Source TEXT NOT NULL`, `Score NUMERIC CHECK (Score BETWEEN 1 AND 5)`, `Handle TEXT UNIQUE`, and `CustomerRef INTEGER REFERENCES Customer(CustomerId)`. Insert one valid row, then try to break each constraint once and note the five different errors.
+2. In the in-memory database, create a table `Feedback` with these columns and **all five constraint kinds present**: `FeedbackId INTEGER PRIMARY KEY`, `Source TEXT NOT NULL`, `Score NUMERIC CHECK (Score BETWEEN 1 AND 5)`, `Handle TEXT UNIQUE`, and `CustomerRef INTEGER REFERENCES Customer(CustomerId)`. Insert one valid row, then try to break each constraint once and note the five different errors.
 3. `ALTER TABLE Feedback RENAME COLUMN Source TO FromWhere;` — then confirm with `PRAGMA table_info(Feedback);` that the rename landed.
 4. What does `PRAGMA foreign_key_list(Feedback);` return? Now `PRAGMA foreign_keys = ON;` and insert a row with `CustomerRef = 999`. What happens — and what would have happened if you hadn't set the pragma?
 5. `EXPLAIN QUERY PLAN` a query that filters `Employee` by `Country = 'Brazil'`, before and after you `CREATE INDEX` on `Employee(Country)`. What changes? (Clean up the index when you're done.)
@@ -623,7 +620,8 @@ Work in litecli against your scratch copy (`data/chinook-scratch.db`), and start
 Answer without scrolling up. The key is in `answers.md`.
 
 1. In one sentence: what is the difference between a column's *declared type* and its *storage class* in SQLite?
-2. You open a fresh litecli session and `INSERT` a row into `InvoiceLine` with a `TrackId` that doesn't exist. It succeeds. Why?
+2. You open a fresh Jasper database session and `INSERT` a row into
+   `InvoiceLine` with a `TrackId` that doesn't exist. It succeeds. Why?
 3. `ALTER TABLE t ADD COLUMN c TEXT UNIQUE;` — what's the error, and what's the workaround in 3.31?
 4. True or false: a `CREATE TABLE` inside a `BEGIN … ROLLBACK` block leaves an empty table behind.
 5. What does `PRAGMA foreign_key_list(Track);` report as `Track`'s three referenced tables, in order?

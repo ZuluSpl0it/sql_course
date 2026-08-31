@@ -7,13 +7,12 @@ course rather than copying a remembered query.
 ## What you need
 
 - Complete Lessons 01–10.
-- Open the assessment database from the repository root:
+- Open [Jasper SQL Playground](https://jasperbernaers.com/sql-playground/) and
+  drag in the assessment database:
 
-```bash
-litecli data/northwind.db
-```
+`data/northwind.db`
 
-- Use `.tables`, `.schema`, `PRAGMA table_info(...)`, and
+- Use Jasper's schema panel, `PRAGMA table_info(...)`, and
   `PRAGMA foreign_key_list(...)` to discover the schema. The exam deliberately
   does not provide a relationship diagram.
 
@@ -21,12 +20,10 @@ litecli data/northwind.db
 
 - Attempt [exam.md](exam.md) before opening any other file here.
 - The core exam is read-only. Do not modify `data/northwind.db`.
-- Questions 43–46 may create an index only on a scratch copy:
+- Questions 43–46 may create an index in the in-memory database:
 
-```bash
-cp data/northwind.db data/northwind-scratch.db
-litecli data/northwind-scratch.db
-```
+Reload `data/northwind.db` in Jasper before attempting those questions so the
+database starts clean.
 
 - After self-grading with [answers.md](answers.md), use
   [guided-solutions.md](guided-solutions.md) for the hardest problems. It is a

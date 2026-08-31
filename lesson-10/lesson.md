@@ -23,8 +23,8 @@ WHERE  InvoiceDate >= '2023-01-01'
   requested columns from the index itself.
 - **USE TEMP B-TREE** means SQLite needs temporary sorting or grouping work.
 
-litecli may compact the plan into one detail line while Python shows four
-columns. Read the words, not the display decoration. A `SEARCH` is evidence
+Jasper may display the plan differently from Python. Read the words, not the
+display decoration. A `SEARCH` is evidence
 about plan shape, not proof of a meaningful timing win on a small table.
 
 ## 2. Worked examples
@@ -196,7 +196,7 @@ read and maintain; verify its result and plan like any other query.
 ### Example 6 — teardown is part of performance work
 
 Temporary indexes are still schema changes. Drop them, then prove they are
-gone before calling the scratch copy clean.
+gone before calling the in-memory database clean.
 
 ```sql
 DROP INDEX idx_l10_invoice_date;
@@ -214,7 +214,7 @@ ORDER  BY type, name;
 
 ## 3. Your turn
 
-Work in your scratch copy. Check [answers.md](answers.md) after attempting
+Work in Jasper SQL Playground with a fresh database load. Check [answers.md](answers.md) after attempting
 the work.
 
 1. Run `EXPLAIN QUERY PLAN` for invoices filtered to one billing country.

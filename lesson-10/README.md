@@ -16,13 +16,7 @@ index, `CREATE INDEX`, `DROP INDEX`, sargable predicate, CTE, fan-out,
 [answers.md](answers.md) (quiz and capstone key — open only after attempting
 the work).
 
-**Before you start** — this lesson creates temporary indexes. Make a scratch
-copy and work in it (from the repo root):
-
-```bash
-cp data/chinook.db data/chinook-scratch.db
-litecli data/chinook-scratch.db
-```
-
-The lesson drops every index it creates. Still, never run its `CREATE INDEX`
-commands against `data/chinook.db`.
+**Before you start** — this lesson creates temporary indexes. Open Jasper SQL
+Playground and load `data/chinook.db`. Work in its in-memory copy and reload
+the original file whenever you need a clean session. The lesson drops every
+index it creates; never download a modified database over the repository file.

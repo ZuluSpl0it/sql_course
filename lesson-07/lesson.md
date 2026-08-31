@@ -305,8 +305,8 @@ bug — you get *plausible-looking* output, just with the wrong root set.
 
 ---
 ## 3. Your turn
-Do these in litecli against `data/chinook.db` — this lesson only reads, so
-the scratch copy is not needed. Answers in `answers.md`.
+Do these in Jasper SQL Playground against `data/chinook.db`. This lesson only
+reads, so no reset is needed. Answers in `answers.md`.
 1. **Scalar in the `SELECT` list.** Add a column showing the store's grand
    total next to each of the first 5 invoices. (One subquery, no `JOIN`.)
 2. **Correlated average.** For each of the 5 customers with the highest

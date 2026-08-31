@@ -281,8 +281,8 @@ same idea applied inside an aggregate.)
 
 ## 3. Your turn
 
-Do these in litecli against `data/chinook.db` — this lesson only reads, so
-the scratch copy is not needed. Check `answers.md` when done.
+Do these in Jasper SQL Playground against `data/chinook.db`. This lesson only
+reads, so no reset is needed. Check `answers.md` when done.
 
 1. How many **albums** are there? Then: what's the average track length in
    milliseconds across the whole `Track` table?

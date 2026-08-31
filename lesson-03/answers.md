@@ -1,12 +1,7 @@
 # Lesson 03 — Quiz Answer Key
 
-Attempt `lesson.md` → Quiz before opening this file. **Reset your scratch
-copy first** so the outputs match:
-
-```bash
-cp data/chinook.db data/chinook-scratch.db
-litecli data/chinook-scratch.db
-```
+Attempt `lesson.md` → Quiz before opening this file. **Reload
+`data/chinook.db` first** so the outputs match.
 
 Expected outputs were verified against the database as shipped. Compare
 **outputs**, not query text.
@@ -28,7 +23,7 @@ ArtistId  Name
 276       Quiz New Artist
 ```
 
-(276 only if you started from a pristine scratch with its 275 original
+(276 only if you started from a fresh database with its 275 original
 artists — `last_insert_rowid()` returns the same number.)
 
 ## Q2 — Change customer 5's city to "Montreal"

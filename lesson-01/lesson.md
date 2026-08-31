@@ -29,7 +29,8 @@ FROM   Artist;
 
 - `SELECT` names the **columns** you want, one per comma.
 - `FROM` names the **table** the rows come from.
-- The `;` ends the statement. In litecli you can also press Enter twice.
+- The `;` ends the statement. Use the playground's **Run** control to execute
+  it.
 
 The query returns one row per artist (275 rows) with a single column, `Name`.
 Column names are case-insensitive in SQLite: `name` and `Name` are the same.
@@ -50,7 +51,7 @@ FROM   Genre;
 ```
 
 `*` means "every column of the table". It's great for exploring a table you
-don't know yet — `.schema Genre` in litecli tells you what each column is.
+ don't know yet — the playground's schema panel tells you what each column is.
 In queries you keep and share, prefer naming the columns you actually need
 (`SELECT *` can break silently if the table changes, and it reads worse).
 
@@ -182,8 +183,7 @@ Restless and Wild                        1        0.99
 Princess of the Dawn                     1        0.99
 ```
 
-(Names longer than your terminal wrap — the data is complete; only the
-display wraps.)
+(Names may wrap in the result table — the data is complete.)
 
 ### Example 3 — DISTINCT in action
 
@@ -298,14 +298,14 @@ Aisha Duo
 Alanis Morissette
 ```
 
-(The third name is long — on a narrow terminal it wraps onto two lines;
-that's display, not data.)
+(The third name is long and may wrap in the result table; that's display, not
+data.)
 
 This is how every "page 2 of a results list" in any web app is built.
 
 ## 3. Your turn
 
-Attempt these in litecli before looking at anything else. No answers in
+Attempt these in Jasper SQL Playground before looking at anything else. No answers in
 this file's query form — that's the point. The result targets below let you
 check your work without giving away the SQL. (The quiz has its answer key in
 `answers.md`.)
@@ -360,11 +360,9 @@ If you want unique values of one column, select *only that column* and
 then `DISTINCT` it. If `DISTINCT` makes a number "smaller than expected",
 check whether the other columns in your select are different.
 
-**Pitfall 4 — the semicolon and double-Enter**
-In litecli, a statement runs when it sees `;` *and* you press Enter, or when
-you press Enter twice on an empty line. No `;` and a lonely Enter → the
-prompt just keeps waiting (a `...` continuation). Ctrl+C cancels a broken
-statement.
+**Pitfall 4 — complete statements**
+In Jasper SQL Playground, click **Run** after entering a complete statement.
+Use a separate query tab when comparing two versions of a query.
 
 **Pitfall 5 — `SELECT *` in a query you ship**
 Fine for exploring, fragile for work. If a column is added to `Track`

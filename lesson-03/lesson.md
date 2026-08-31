@@ -9,11 +9,10 @@ all-or-nothing unit.
 
 The rules of the road for this lesson:
 
-- Work against the **scratch copy** (`chinook-scratch.db`), never
-  `data/chinook.db`.
-- In litecli, each statement you run is **committed immediately** unless you
-  start a transaction. There is no built-in undo. That's why the scratch
-  copy and transactions exist.
+- Work against Jasper's in-memory copy of the database; never overwrite the
+  repository file.
+- Each statement is **committed immediately** unless you start a transaction.
+  Reload the original file to reset the browser session.
 
 ## 1. The concept
 
@@ -123,7 +122,7 @@ CREATE TABLE AuditLog (
 
 ## 2. Worked examples
 
-(All on `chinook-scratch.db`.)
+(All in the Jasper database session.)
 
 ### Example 1 — the first INSERT
 
@@ -148,7 +147,7 @@ COUNT(*)
 ```
 
 The table had 275 artists; the new one got id 276. The row is live
-immediately — no `COMMIT` needed, because without a `BEGIN`, litecli
+immediately — no `COMMIT` needed, because without a `BEGIN`, SQLite
 autocommits every statement.
 
 ### Example 2 — several rows at once
@@ -290,13 +289,8 @@ when you ran the updates.
 whole point of opening a transaction *before* the writes you want to be
 undoable.)
 
-For the next examples, exit litecli and start fresh from a clean copy, so
+For the next examples, reload a clean database copy, so
 we're not carrying any state forward:
-
-```bash
-cp data/chinook.db data/chinook-scratch.db
-litecli data/chinook-scratch.db
-```
 
 ### Example 6 — DELETE, in the right order
 
@@ -372,7 +366,7 @@ LogId  What              WhenHappened
 ```
 
 `LogId` was never specified — `INTEGER PRIMARY KEY` auto-filled it with 1.
-`.schema AuditLog` in litecli shows exactly what was created.
+The playground's schema panel shows exactly what was created.
 
 ### Example 9 — what keeps a bad INSERT out
 
@@ -396,8 +390,8 @@ transaction, a `ROLLBACK` would restore everything else you'd done in it.)
 
 ## 3. Your turn
 
-All on the scratch copy. Suggested: reset it first (`cp data/chinook.db
-data/chinook-scratch.db`) so you start from the same state as the examples.
+All in the Jasper database session. Reload `data/chinook.db` first so you start
+from the same state as the examples.
 
 1. Insert a new artist called "Your Band Name Here". Show its id.
 2. Insert two new genres (ids 26 and 27 — supply them yourself this time:
@@ -412,7 +406,7 @@ data/chinook-scratch.db`) so you start from the same state as the examples.
 
 ## 4. Quiz
 
-Reset your scratch copy before starting so the expected outputs below match
+Reload `data/chinook.db` before starting so the expected outputs below match
 yours. Each question is independent; answer keys in `answers.md`.
 
 1. Insert an artist named "Quiz New Artist". Show its id and name.
@@ -452,12 +446,13 @@ match position by position — read yours out loud before running.
 Off the shelf, a fresh SQLite connection enforces *no* foreign keys — you
 can insert `ArtistId 9999` happily. Every session needs
 `PRAGMA foreign_keys = ON;` (it doesn't persist across connections).
-litecli does not set it for you. This is a SQLite quirk; PostgreSQL, MySQL,
+The playground does not set it for you. This is a SQLite quirk; PostgreSQL, MySQL,
 and SQL Server enforce FKs always.
 
 **Pitfall 4 — "I'll undo it" doesn't exist outside a transaction.**
-In litecli each statement commits itself. A `DELETE` you just ran is gone —
-the only undo is the scratch copy (or a backup). The discipline: *open the
+Outside an explicit transaction, each statement commits immediately. A
+`DELETE` you just ran is gone — the only undo is reloading the original file
+(or a backup). The discipline: *open the
 `BEGIN` before the first write you're unsure about*. If you never `BEGIN`,
 you can never `ROLLBACK`.
 
@@ -481,10 +476,11 @@ for that use `SELECT ArtistId FROM Artist ORDER BY ArtistId DESC LIMIT 1`.
   parents.
 - `BEGIN … COMMIT` makes a group of writes permanent together; `BEGIN …
   ROLLBACK` makes none of them happen at all.
-- litecli autocommits; the transaction is the only undo.
+- SQLite commits statements outside an explicit transaction; the transaction
+  is the only SQL-level undo.
 - `CREATE TABLE` with `INTEGER PRIMARY KEY` gives you auto-numbered keys.
 - SQLite FKs need `PRAGMA foreign_keys = ON;` each session.
-- Work on the scratch copy; the course DB stays pristine.
+- Work in Jasper's in-memory copy; the course DB stays pristine.
 
 ## 7. Look ahead
 

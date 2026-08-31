@@ -360,7 +360,7 @@ one album → one artist). No one-side value gets repeated. The rule: **don't
 
 ## 3. Your turn
 
-Work in litecli against `data/chinook.db` (this lesson only reads). Check
+Work in Jasper SQL Playground against `data/chinook.db` (this lesson only reads). Check
 `answers.md` when done.
 
 1. List the 10 tracks in alphabetical order, each with its album title.

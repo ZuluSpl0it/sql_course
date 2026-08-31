@@ -8,17 +8,10 @@ This folder contains the two SQLite database files used by the course.
 digital music store with artists, albums, tracks, customers, invoices, and
 employees.
 
-Treat this file as **pristine**. Lessons that only read data can connect to it
-directly. Before Lessons 03, 09, or 10—where you write data or change schema—
-create a scratch copy from the repository root:
-
-```bash
-cp data/chinook.db data/chinook-scratch.db
-litecli data/chinook-scratch.db
-```
-
-When you want to start over, delete the scratch copy and create it again from
-`chinook.db`. `chinook-scratch.db` is intentionally ignored by Git.
+Treat this file as **pristine**. Jasper SQL Playground reads it into an
+in-memory browser copy, so Lessons 03, 09, and 10 can write data or change the
+schema without changing this file. Reload the original file whenever you want
+to start over.
 
 ## `northwind.db`
 
@@ -28,15 +21,11 @@ the SQL skills from Chinook to unfamiliar tables and relationships.
 
 The final test is read-only. Do not modify `northwind.db`.
 
-## SQLite tools
+## Using the databases
 
-Both files are standard SQLite 3 databases. You can inspect either one with
-LiteCLI:
+Both files are standard SQLite 3 databases. Open [Jasper SQL
+Playground](https://jasperbernaers.com/sql-playground/) and drag either file
+into the page:
 
-```bash
-litecli data/chinook.db
-litecli data/northwind.db
-```
-
-Use `.tables` to list tables and `.schema TableName` to inspect a table's
-columns.
+The playground's schema panel lists tables and columns. All changes happen in
+the browser's in-memory copy; the files in this folder are not modified.

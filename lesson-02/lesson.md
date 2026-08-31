@@ -370,7 +370,7 @@ the first thing to check.
 
 ## 3. Your turn
 
-Open-ended; run them in litecli and judge your own output against what you
+Open-ended; run them in Jasper SQL Playground and judge your own output against what you
 now understand. No answers in this file.
 
 1. List the German customers (names and country).

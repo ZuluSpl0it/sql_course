@@ -76,7 +76,7 @@ run SQL for every question unless it explicitly asks for a written explanation.
 
 ## Section 6 — Plans, indexes, and integrated case studies (43–50)
 
-43. On a Northwind scratch copy, inspect the plan for an exact customer-country
+43. In Jasper's in-memory Northwind database, inspect the plan for an exact customer-country
     filter before and after an index on `Customers(Country)`. Drop the index.
 44. Explain why an index on `Products(ProductName)` cannot narrow
     `ProductName LIKE '%tea%'` in the ordinary B-tree sense.

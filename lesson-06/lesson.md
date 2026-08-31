@@ -453,8 +453,8 @@ operator.)
 
 ## 3. Your turn
 
-Do these in litecli against `data/chinook.db` — this lesson only reads, so
-the scratch copy is not needed. Answers in `answers.md`.
+Do these in Jasper SQL Playground against `data/chinook.db`. This lesson only
+reads, so no reset is needed. Answers in `answers.md`.
 
 1. **Cross join, on purpose.** How many rows does
    `SELECT * FROM MediaType, Genre` produce? (No `JOIN` at all — that's a

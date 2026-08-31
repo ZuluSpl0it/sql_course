@@ -4,8 +4,8 @@
 and, more importantly, wrap those writes in a transaction so that when you
 make a mistake (you will), the database reverts it instead of keeping it.
 
-**You need from before:** Lessons 01–02 (`SELECT`, `WHERE`, and the
-scratch-copy habit).
+**You need from before:** Lessons 01–02 (`SELECT`, `WHERE`, and loading the
+database in Jasper SQL Playground).
 
 **Keywords this lesson:** `INSERT`, `VALUES`, `UPDATE`, `SET`, `DELETE`,
 `BEGIN`, `COMMIT`, `ROLLBACK`, `CREATE TABLE`, `changes()`
@@ -13,13 +13,8 @@ scratch-copy habit).
 **Files in this folder:** [lesson.md](lesson.md), [answers.md](answers.md)
 (quiz key — open only after you've attempted the quiz).
 
-**Before you start** — this is the first lesson that *writes*. Make a
-scratch copy and work in it (from the repo root):
+**Before you start** — this is the first lesson that *writes*. Open Jasper SQL
+Playground and load `data/chinook.db`:
 
-```bash
-cp data/chinook.db data/chinook-scratch.db
-litecli data/chinook-scratch.db
-```
-
-If you're on Windows: `copy data\chinook.db data\chinook-scratch.db`.
-The real `data/chinook.db` stays untouched for the rest of the course.
+Jasper works on an in-memory copy. Reload `data/chinook.db` whenever you need
+to reset the lesson; the real file stays untouched.

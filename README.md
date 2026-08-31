@@ -13,8 +13,8 @@ output for basic performance intuition.
 
 ## How the course works
 
-- **One tool:** [litecli](https://github.com/dbcli/litecli) (a SQLite command-line
-  client with autocomplete). Setup is in [getting-started/](getting-started/).
+- **One tool:** [Jasper SQL Playground](https://jasperbernaers.com/sql-playground/),
+  a browser-based SQLite workspace. Setup is in [getting-started/](getting-started/).
 - **One database:** `data/chinook.db`, shared by Lessons 01–10. Each lesson's
   queries run against it.
 - **Every lesson** follows the same seven-block structure:
@@ -55,7 +55,7 @@ exam questions.
 README.md                <- this file
 getting-started/         <- install & first connection
 data/
-  README.md               <- database and scratch-copy guidance
+  README.md               <- database and reset guidance
   chinook.db             <- the course database (used by Lessons 01-10)
   northwind.db           <- unfamiliar database for the final test
 lesson-01/
@@ -76,7 +76,6 @@ tools/
 
 ## Pinned versions
 
-- **litecli** ≥ 1.17 (current as of this course)
 - **SQLite** ≥ 3.31 (any modern system version is fine; `chinook.db` is a
   standard SQLite file and works across all current versions)
 

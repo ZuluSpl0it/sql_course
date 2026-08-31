@@ -104,7 +104,7 @@ Charlie Brown Jr.
 Chicago Symphony Chorus, Chicago Symphony Orchestra & Sir Georg Solti
 ```
 
-The long names wrap on narrow terminals — that's display, not data.
+Long names may wrap in the result table — that's display, not data.
 Don't accept an `OFFSET 50` without an `ORDER BY` (unstable result) or an
 `OFFSET` written before a `LIMIT` (SQLite syntax error — pitfall 2).
 

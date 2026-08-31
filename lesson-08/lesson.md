@@ -215,8 +215,8 @@ leap years for free (a two-year span that crosses 2016 is 731 days, not
 
 ---
 ## 3. Your turn
-Do these in litecli against `data/chinook.db` — this lesson only reads, so
-the scratch copy is not needed. Answers in `answers.md`.
+Do these in Jasper SQL Playground against `data/chinook.db`. This lesson only
+reads, so no reset is needed. Answers in `answers.md`.
 1. **Invoices per month in 2023.** Use `STRFTIME('%m', …)` to show the
    invoice count for each of the twelve months of 2023. (One month differs
    from the rest — find it.)
@@ -405,5 +405,5 @@ Next up, **Lesson 09: Schema & constraints** — where the declared types
 you've been reading as text all along (`NVARCHAR(40)`, `DATETIME`,
 `NUMERIC(10,2)`) actually come from, and how SQLite maps them onto the
 five storage classes this lesson has been living in. It's the first
-write-lesson since Lesson 03: you'll copy `data/chinook.db` to a scratch
+write-lesson since Lesson 03: you'll reload `data/chinook.db` for a clean
 database before touching anything.
