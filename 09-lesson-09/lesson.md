@@ -636,8 +636,6 @@ outputs match. Check `answers_practical.md` when you're done.
 - **DDL is transactional**: `BEGIN … ROLLBACK` undoes `CREATE`/`DROP` just like `INSERT`.
 - **`EXPLAIN QUERY PLAN`** shows `SCAN TABLE` (read everything) vs `SEARCH … USING (COVERING) INDEX` (jump straight to the match) — the before/after that motivates every index you'll evaluate next.
 
-**Next up — Lesson 10 (Performance & the Capstone):** the schema is under your feet, so now the questions get expensive. You'll read `EXPLAIN QUERY PLAN` like a diagnostic, decide which indexes actually earn their keep (and which just slow the writes), and then put the whole course together in a multi-part report and a graded end-of-course project.
-
 ## 6. Quiz
 
 Answer without scrolling up. The key is in `answers_quiz.md`.
@@ -649,5 +647,9 @@ Answer without scrolling up. The key is in `answers_quiz.md`.
 4. True or false: a `CREATE TABLE` inside a `BEGIN … ROLLBACK` block leaves an empty table behind.
 5. What does `PRAGMA foreign_key_list(Track);` report as `Track`'s three referenced tables, in order?
 6. (Stretch) Why can you `DROP INDEX idx_cust_country` but not `DROP INDEX sqlite_autoindex_PlaylistTrack_1`?
+
+## 7. Look ahead
+
+**Next up — Lesson 10 (Performance & the Capstone):** the schema is under your feet, so now the questions get expensive. You'll read `EXPLAIN QUERY PLAN` like a diagnostic, decide which indexes actually earn their keep (and which just slow the writes), and then put the whole course together in a multi-part report and a graded end-of-course project.
 
 ---

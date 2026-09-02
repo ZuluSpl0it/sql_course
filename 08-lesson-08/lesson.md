@@ -381,13 +381,6 @@ knowing that is the whole point.
   `UNKNOWN` — only `IS [NOT] NULL` works.
 - **Integer division truncates toward zero** (`7/2 = 3`, `-7/2 = -3`);
   make one operand a float (`* 1.0`) for real division.
-Next up, **Lesson 09: Schema & constraints** — where the declared types
-you've been reading as text all along (`NVARCHAR(40)`, `DATETIME`,
-`NUMERIC(10,2)`) actually come from, and how SQLite maps them onto the
-five storage classes this lesson has been living in. It's the first
-write-lesson since Lesson 03: you'll click **Load** and select `chinook.db` for a clean
-database before touching anything.
-
 ## 6. Quiz
 1. What does `'2021-01-01' + 7` evaluate to, and *why*? What about
    `'abc' + 1`? (Pitfall 1 is the lesson; this is the mechanism.)
@@ -407,4 +400,13 @@ database before touching anything.
    using `%W` (capital) be wrong even though it also starts at something
    small? And what does `STRFTIME('%Q', …)` — a code that doesn't exist —
    return, and what does that make it dangerous?
+
+## 7. Look ahead
+
+Next up, **Lesson 09: Schema & constraints** — where the declared types
+you've been reading as text all along (`NVARCHAR(40)`, `DATETIME`,
+`NUMERIC(10,2)`) actually come from, and how SQLite maps them onto the
+five storage classes this lesson has been living in. It's the first
+write-lesson since Lesson 03: you'll click **Load** and select `chinook.db` for a clean
+database before touching anything.
 ---

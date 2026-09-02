@@ -453,10 +453,6 @@ always means the anchor is wrong. Verify the anchor by itself first:
 - **SQLite 3.31 specifics:** a multi-row "scalar" silently returns the first
   row (no error); `ORDER BY`/`LIMIT` bind to the *whole* compound, never a branch
   — so per-branch limits go inside derived tables.
-Next up, **Lesson 08: Expressions & functions** — leaving row-level SQL and
-starting to *shape* each value: `CASE`, string and date functions, and
-`CAST`/`COALESCE`.
-
 ## 6. Quiz
 1. A scalar subquery in the `SELECT` list — what exactly must it return for
    the query to be well-formed?
@@ -478,4 +474,10 @@ starting to *shape* each value: `CASE`, string and date functions, and
    *zero* employees (say `WHERE EmployeeId = 999`)? And if the data had a
    *cycle* (an employee who reports, directly or indirectly, back to
    themselves), what would the query do — and how do you keep it safe?
+
+## 7. Look ahead
+
+Next up, **Lesson 08: Expressions & functions** — leaving row-level SQL and
+starting to *shape* each value: `CASE`, string and date functions, and
+`CAST`/`COALESCE`.
 ---
