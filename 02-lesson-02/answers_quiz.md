@@ -2,7 +2,9 @@
 
 Attempt the quiz in `lesson.md` before opening this file. Every query runs
 against `12-data/chinook.db`; expected outputs verified against the database
-as shipped in this repo. Compare **outputs**, not query text — many correct
+as shipped in this repo. `ORDER BY` appears in reference queries for stable,
+readable output; it is required only when the prompt requests an order or a
+first/last subset. Compare **outputs**, not query text — many correct
 phrasings exist.
 
 ## Q1 — Customers in Brazil

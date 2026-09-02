@@ -8,9 +8,9 @@ This folder contains the two SQLite database files used by the course.
 digital music store with artists, albums, tracks, customers, invoices, and
 employees.
 
-Treat this file as **pristine**. Jasper SQL Playground reads it into an
-in-memory browser copy, so Lessons 03, 09, and 10 can write data or change the
-schema without changing this file. Reload the original file whenever you want
+Treat this file as **pristine**. SQL Explorer reads it into an in-memory
+browser copy from GitHub, so Lessons 03, 09, and 10 can write data or change
+the schema without changing this file. Click **Load** again whenever you want
 to start over.
 
 ## `northwind.db`
@@ -23,9 +23,9 @@ The final test is read-only. Do not modify `northwind.db`.
 
 ## Using the databases
 
-Both files are standard SQLite 3 databases. Open [Jasper SQL
-Playground](https://jasperbernaers.com/sql-playground/) and drag either file
-into the page:
+Both files are standard SQLite 3 databases. Open [SQL
+Explorer](https://sql-explorer.netlify.app/) and select either database from the
+dropdown:
 
-The playground's schema panel lists tables and columns. All changes happen in
-the browser's in-memory copy; the files in this folder are not modified.
+The schema panel lists tables and columns. All changes happen in the browser's
+in-memory copy; the files in this folder are not modified.

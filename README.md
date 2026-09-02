@@ -13,7 +13,7 @@ output for basic performance intuition.
 
 ## How the course works
 
-- **One tool:** [Jasper SQL Playground](https://jasperbernaers.com/sql-playground/),
+- **One tool:** [SQL Explorer](https://sql-explorer.netlify.app/),
   a browser-based SQLite workspace. Setup is in [00-getting-started/](00-getting-started/).
 - **One database:** `12-data/chinook.db`, shared by Lessons 01–10. Each lesson's
   queries run against it.

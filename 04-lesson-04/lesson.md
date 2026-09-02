@@ -281,7 +281,7 @@ same idea applied inside an aggregate.)
 
 ## 3. Practical Exercises
 
-Do these in Jasper SQL Playground against `12-data/chinook.db`. This lesson only
+Do these in SQL Explorer with `chinook.db` selected. This lesson only
 reads, so no reset is needed. Check `answers_practical.md` when done.
 
 1. How many **albums** are there? Then: what's the average track length in

@@ -1,6 +1,9 @@
 # Lesson 02 — Practical Answer Key
 
 Attempt the practical exercises in `lesson.md` before opening this file.
+`ORDER BY` appears below when useful for stable, readable output. It is
+required only when the exercise explicitly requests an order or a first/last
+subset.
 
 ## Practical Exercises (reference)
 
@@ -38,28 +41,37 @@ WHERE  Country = 'Canada'
 ORDER  BY LastName, FirstName;
 ```
 
-Canada has 8 customers; those with a company are the Rogers Canada and
-Telus ones (2 rows — François Tremblay has a NULL company, so the IS NOT
-NULL filter is doing real work here).
+Canada has 8 customers, but only 2 have a non-NULL company (the Rogers Canada
+and Telus rows). François Tremblay is one of the Canadian customers excluded
+because his `Company` value is NULL, so `IS NOT NULL` is doing real work here.
 
-4. Distinct countries represented by customers in France, Germany, or Brazil:
+4. Distinct cities of customers in France, Germany, or Brazil:
 
 ```sql
-SELECT DISTINCT Country
+SELECT DISTINCT City
 FROM   Customer
 WHERE  Country IN ('France', 'Germany', 'Brazil')
-ORDER  BY Country;
+ORDER  BY City;
 ```
 
 ```
-Country
--------
-Brazil
-France
-Germany
+City
+------------------
+Berlin
+Bordeaux
+Brasília
+Dijon
+Frankfurt
+Lyon
+Paris
+Rio de Janeiro
+Stuttgart
+São José dos Campos
+São Paulo
 ```
 
-The result is the set of countries represented by the filtered customers.
+The country list filters the customers; `DISTINCT City` returns the different
+cities represented by those matching customers.
 
 5. Playlists starting with "Classical":
 

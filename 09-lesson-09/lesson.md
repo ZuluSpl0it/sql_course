@@ -2,9 +2,9 @@
 
 You've been *reading* Chinook for eight lessons. This lesson opens the hood: what a `CREATE TABLE` actually declares, why SQLite's declared types are a promise rather than a rule, and how the five constraint words (`PRIMARY KEY`, `NOT NULL`, `UNIQUE`, `CHECK`, `FOREIGN KEY`) are enforced — and when they *aren't*. You'll also learn what `ALTER TABLE` can and can't do in SQLite 3.31, how to read the schema's own data in `sqlite_master`, and what `EXPLAIN QUERY PLAN` shows before and after you add an index — the bridge into Lesson 10's performance work.
 
-**This lesson writes.** Open Jasper SQL Playground and load `12-data/chinook.db`.
+**This lesson writes.** Open SQL Explorer and select `chinook.db`.
 Work in its in-memory
-copy; reload the original file whenever you need a clean session. The real
+copy; click **Load** again whenever you need a clean session. The GitHub
 database stays untouched. The last example tears down everything it creates.
 
 ---
@@ -603,7 +603,7 @@ COUNT(*)
 
 ## 3. Practical Exercises
 
-Work in Jasper SQL Playground against a fresh load of `12-data/chinook.db` so the
+Work in SQL Explorer with a fresh `chinook.db` load so the
 outputs match. Check `answers_practical.md` when you're done.
 
 1. Print the declared schema of `Invoice` with `PRAGMA table_info(Invoice);`. For `Total` and `InvoiceDate`, what does `typeof()` report for a real row — and which affinity does each declared type map to?
@@ -643,7 +643,7 @@ outputs match. Check `answers_practical.md` when you're done.
 Answer without scrolling up. The key is in `answers_quiz.md`.
 
 1. In one sentence: what is the difference between a column's *declared type* and its *storage class* in SQLite?
-2. You open a fresh Jasper database session and `INSERT` a row into
+2. You open a fresh SQL Explorer database session and `INSERT` a row into
    `InvoiceLine` with a `TrackId` that doesn't exist. It succeeds. Why?
 3. `ALTER TABLE t ADD COLUMN c TEXT UNIQUE;` — what's the error, and what's the workaround in 3.31?
 4. True or false: a `CREATE TABLE` inside a `BEGIN … ROLLBACK` block leaves an empty table behind.

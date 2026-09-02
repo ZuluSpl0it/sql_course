@@ -392,14 +392,15 @@ check.
 
 ## 3. Practical Exercises
 
-Write and run these in Jasper SQL Playground, then compare your results with
-`answers_practical.md`.
+Write and run these in SQL Explorer, then compare your results with
+`answers_practical.md`. Add `ORDER BY` when the prompt asks for a particular
+order (such as alphabetical order or first 5). Otherwise, ordering is optional;
+the database does not guarantee row order without it.
 
 1. List the German customers (names and country).
 2. List tracks that cost exactly 1.99, in alphabetical order, first 5.
 3. List customers who are in Canada **and** have a company on file.
-4. List the distinct countries represented by customers in France, Germany,
-   or Brazil.
+4. List the distinct cities of customers in France, Germany, or Brazil.
 5. List playlist names that start with "Classical".
 6. (stretch) List track titles that contain the word "Live" *anywhere*,
    case-insensitive, first 5.
@@ -421,9 +422,8 @@ the whole thing return nothing — see Pitfall 3.
 **Pitfall 3 — `NOT IN` with a NULL in the list breaks completely.**
 If the list value could be NULL (a column reference, a subquery), and any
 list row is NULL, then `x NOT IN (…)` is UNKNOWN for *every* x and returns
-zero rows. Safer patterns: use `NOT EXISTS` (Lesson 07) or rewrite with
-`LEFT JOIN … IS NULL`. Keep `NOT IN` for literal constant lists where you
-know there are no NULLs.
+zero rows. A safer pattern is `NOT EXISTS` (Lesson 07). Keep `NOT IN` for
+literal constant lists where you know there are no NULLs.
 
 **Pitfall 4 — `AND` beats `OR` — and people get it wrong.**
 `a OR b AND c` is `a OR (b AND c)`. If you mean `(a OR b) AND c`, write the
@@ -448,7 +448,8 @@ and give you wrong answers. Numbers unquoted, text quoted — always.
   before `ORDER BY`.
 - Compare with `=`, `<>`, `<`, `>`, `<=`, `>=`. Numbers unquoted, text in
   single quotes.
-- Combine with `NOT` > `AND` > `OR` (precedence). **Use parentheses.**
+- Precedence: `NOT` binds tighter than `AND`, and `AND` binds tighter than
+  `OR`. **Use parentheses.**
 - `IN (…)` for "one of these"; `NOT IN` with care (NULL in the list = no
   rows).
 - `BETWEEN a AND b` is inclusive on both ends; works on numbers and on
@@ -463,7 +464,8 @@ and give you wrong answers. Numbers unquoted, text quoted — always.
 
 Write a query for each, run it, compare your **output** to `answers_quiz.md`.
 Many correct phrasings exist; the key shows one good one and notes what
-would *not* count.
+would *not* count. Use `ORDER BY` when the prompt asks for an order or a
+first/last subset; otherwise it is optional.
 
 1. List the customers in Brazil (names and country).
 2. List the US customers who have a company on file — names and company.

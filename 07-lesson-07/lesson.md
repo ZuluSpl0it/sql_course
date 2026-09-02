@@ -305,7 +305,7 @@ bug — you get *plausible-looking* output, just with the wrong root set.
 
 ---
 ## 3. Practical Exercises
-Do these in Jasper SQL Playground against `12-data/chinook.db`. This lesson only
+Do these in SQL Explorer with `chinook.db` selected. This lesson only
 reads, so no reset is needed. Answers in `answers_practical.md`.
 1. **Scalar in the `SELECT` list.** Add a column showing the store's grand
    total next to each of the first 5 invoices. (One subquery, no `JOIN`.)

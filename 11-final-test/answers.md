@@ -58,16 +58,17 @@ Start a sold-product-line report at `Order Details`: one row is one product on o
 
 ## Section 2 — Retrieval, filtering, and expressions
 
-### 7. Products above 50
+### 7. Products priced between 10 and 25
 
 ```sql
 SELECT ProductName, UnitPrice
 FROM   Products
-WHERE  UnitPrice > 50
-ORDER  BY UnitPrice DESC, ProductName;
+WHERE  UnitPrice BETWEEN 10 AND 25
+ORDER  BY UnitPrice, ProductName;
 ```
 
-**Credit:** strict greater-than and deterministic order. **Review:** Lessons 01–02 — `WHERE`, `ORDER BY`.
+**Credit:** inclusive range and deterministic order. **Review:** Lesson 02 —
+`BETWEEN`, `WHERE`, `ORDER BY`.
 
 ### 8. German customers
 
@@ -555,7 +556,7 @@ ORDER  BY discount_class;
 
 ### 43. Country index experiment
 
-Run only in a fresh Jasper session with `12-data/northwind.db` loaded:
+Run only in a fresh SQL Explorer session with `northwind.db` loaded:
 
 ```sql
 EXPLAIN QUERY PLAN

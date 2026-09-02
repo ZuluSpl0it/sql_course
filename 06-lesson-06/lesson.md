@@ -453,7 +453,7 @@ operator.)
 
 ## 3. Practical Exercises
 
-Do these in Jasper SQL Playground against `12-data/chinook.db`. This lesson only
+Do these in SQL Explorer with `chinook.db` selected. This lesson only
 reads, so no reset is needed. Answers in `answers_practical.md`.
 
 1. **Cross join, on purpose.** How many rows does

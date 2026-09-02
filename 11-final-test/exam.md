@@ -16,7 +16,8 @@ run SQL for every question unless it explicitly asks for a written explanation.
 
 ## Section 2 — Retrieval, filtering, and expressions (7–16)
 
-7. List product name and unit price for products priced above 50, highest first.
+7. List product name and unit price for products priced between 10 and 25
+   inclusive, lowest first.
 8. List German customers alphabetically by company name.
 9. Return every discontinued product, including its category id.
 10. List customers whose `Region` is missing.
@@ -76,7 +77,7 @@ run SQL for every question unless it explicitly asks for a written explanation.
 
 ## Section 6 — Plans, indexes, and integrated case studies (43–50)
 
-43. In Jasper's in-memory Northwind database, inspect the plan for an exact customer-country
+43. In SQL Explorer's in-memory Northwind database, inspect the plan for an exact customer-country
     filter before and after an index on `Customers(Country)`. Drop the index.
 44. Explain why an index on `Products(ProductName)` cannot narrow
     `ProductName LIKE '%tea%'` in the ordinary B-tree sense.

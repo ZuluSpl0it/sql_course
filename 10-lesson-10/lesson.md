@@ -23,7 +23,7 @@ WHERE  InvoiceDate >= '2023-01-01'
   requested columns from the index itself.
 - **USE TEMP B-TREE** means SQLite needs temporary sorting or grouping work.
 
-Jasper may display the plan differently from Python. Read the words, not the
+SQL Explorer may display the plan differently from Python. Read the words, not the
 display decoration. A `SEARCH` is evidence
 about plan shape, not proof of a meaningful timing win on a small table.
 
@@ -214,7 +214,7 @@ ORDER  BY type, name;
 
 ## 3. Practical Exercises
 
-Work in Jasper SQL Playground with a fresh database load. Check [answers_practical.md](answers_practical.md) after attempting
+Work in SQL Explorer with a fresh `chinook.db` load. Check [answers_practical.md](answers_practical.md) after attempting
 the work.
 
 1. Run `EXPLAIN QUERY PLAN` for invoices filtered to one billing country.

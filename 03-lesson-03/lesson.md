@@ -9,10 +9,18 @@ all-or-nothing unit.
 
 The rules of the road for this lesson:
 
-- Work against Jasper's in-memory copy of the database; never overwrite the
-  repository file.
 - Each statement is **committed immediately** unless you start a transaction.
-  Reload the original file to reset the browser session.
+- Select `chinook.db` in the database dropdown, then click **Load** to reset
+  the browser session.
+
+After each database load for this lesson, run this so SQLite enforces foreign
+keys, as other database systems normally do:
+
+  ```sql
+  PRAGMA foreign_keys = ON;
+  ```
+
+  This setting applies only to the current database connection.
 
 ## 1. The concept
 
@@ -122,7 +130,7 @@ CREATE TABLE AuditLog (
 
 ## 2. Worked examples
 
-(All in the Jasper database session.)
+(All in the SQL Explorer database session.)
 
 ### Example 1 — the first INSERT
 
@@ -299,8 +307,10 @@ when you ran the updates.
 whole point of opening a transaction *before* the writes you want to be
 undoable.)
 
-For the next examples, reload a clean database copy, so
-we're not carrying any state forward:
+For the next examples, select `chinook.db` in the database dropdown, then
+click **Load** to get a clean copy. Run `PRAGMA foreign_keys = ON;` again
+afterward. This keeps us from carrying any state forward and turns
+foreign-key enforcement back on.
 
 ### Example 6 — DELETE, in the right order
 
@@ -327,7 +337,8 @@ ORDER  BY InvoiceLineId;
 ```
 
 The child table (`InvoiceLine`) is emptied first; then the parent row is
-free to go. Delete parent-first (with foreign keys enforced) and the
+free to go. Because foreign keys are enabled for this lesson, delete
+parent-first and the
 second statement fails with `FOREIGN KEY constraint failed` — leaving you
 with a half-deleted mess unless you're in a transaction (and then you
 `ROLLBACK`).
@@ -406,7 +417,7 @@ transaction, a `ROLLBACK` would restore everything else you'd done in it.)
 
 ## 3. Practical Exercises
 
-Write and run these in Jasper SQL Playground. Reload `12-data/chinook.db` first
+Write and run these in SQL Explorer. Click **Load** and select `chinook.db` first
 so you start from the same state as the examples. Compare your results with
 `answers_practical.md`.
 
@@ -433,27 +444,28 @@ still in time for a `ROLLBACK` if you were in a transaction.
 **Pitfall 2 — INSERT columns and values out of sync.**
 
 ```sql
-PRAGMA foreign_keys = OFF;
-
 INSERT INTO Album (Title, ArtistId)
-VALUES (42, 'Some Title');
+VALUES (42, 1);
 ```
 
-SQLite stores 42 as the title and `'Some Title'`… into an integer column.
-It's legal, silent, and corrupting. The column list and the value list must
-match position by position — read yours out loud before running.
+SQLite stores 42 as the title and 1 as the artist id. It's legal, silent, and
+corrupting — the foreign key is valid, but the values are in the wrong
+columns. The column list and the value list must match position by position;
+read yours out loud before running. Click **Load** again afterward to discard
+the test row.
 
 **Pitfall 3 — SQLite does not enforce foreign keys by default.**
 Off the shelf, a fresh SQLite connection enforces *no* foreign keys — you
 can insert `ArtistId 9999` happily. Every session needs
-`PRAGMA foreign_keys = ON;` (it doesn't persist across connections).
-The playground does not set it for you. This is a SQLite quirk; PostgreSQL, MySQL,
-and SQL Server enforce FKs always.
+`PRAGMA foreign_keys = ON;` (it doesn't persist across connections). SQL
+Explorer does not set it for you, so the Lesson 3 setup tells you to run it
+after every load. This is a SQLite quirk; PostgreSQL, MySQL, and SQL Server
+enforce FKs always.
 
 **Pitfall 4 — "I'll undo it" doesn't exist outside a transaction.**
 Outside an explicit transaction, each statement commits immediately. A
-`DELETE` you just ran is gone — the only undo is reloading the original file
-(or a backup). The discipline: *open the
+`DELETE` you just ran is gone — the only undo is clicking **Load** again (or a
+backup). The discipline: *open the
 `BEGIN` before the first write you're unsure about*. If you never `BEGIN`,
 you can never `ROLLBACK`.
 
@@ -481,12 +493,13 @@ for that use `SELECT ArtistId FROM Artist ORDER BY ArtistId DESC LIMIT 1`.
   is the only SQL-level undo.
 - `CREATE TABLE` with `INTEGER PRIMARY KEY` gives you auto-numbered keys.
 - SQLite FKs need `PRAGMA foreign_keys = ON;` each session.
-- Work in Jasper's in-memory copy; the course DB stays pristine.
+- Work in SQL Explorer's in-memory copy; the course DB stays pristine.
 
 ## 6. Quiz
 
-Reload `12-data/chinook.db` before starting so the expected outputs below match
-yours. Each question is independent; answer keys are in `answers_quiz.md`.
+Click **Load** and select `chinook.db` before starting so the expected outputs
+below match yours. Each question is independent; answer keys are in
+`answers_quiz.md`.
 
 1. Insert an artist named "Quiz New Artist". Show its id and name.
 2. Change customer 5's city to "Montreal". Show the city before and after.

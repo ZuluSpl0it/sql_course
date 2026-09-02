@@ -16,7 +16,7 @@ index, `CREATE INDEX`, `DROP INDEX`, sargable predicate, CTE, fan-out,
 [answers_practical.md](answers_practical.md), and
 [answers_quiz.md](answers_quiz.md) (open only after attempting the work).
 
-**Before you start** — this lesson creates temporary indexes. Open Jasper SQL
-Playground and load `12-data/chinook.db`. Work in its in-memory copy and reload
-the original file whenever you need a clean session. The lesson drops every
-index it creates; never download a modified database over the repository file.
+**Before you start** — this lesson creates temporary indexes. Open SQL Explorer
+and select `chinook.db`. Work in its in-memory copy and click **Load** again
+whenever you need a clean session. The lesson drops every index it creates; the
+GitHub database is never modified.

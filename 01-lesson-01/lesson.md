@@ -305,7 +305,7 @@ This is how every "page 2 of a results list" in any web app is built.
 
 ## 3. Practical Exercises
 
-Attempt these in Jasper SQL Playground before looking at anything else. Write
+Attempt these in SQL Explorer before looking at anything else. Write
 the queries yourself, then compare your results with
 [`answers_practical.md`](answers_practical.md).
 
@@ -342,7 +342,7 @@ then `DISTINCT` it. If `DISTINCT` makes a number "smaller than expected",
 check whether the other columns in your select are different.
 
 **Pitfall 4 — complete statements**
-In Jasper SQL Playground, click **Run** after entering a complete statement.
+In SQL Explorer, click **Run** after entering a complete statement.
 Use a separate query tab when comparing two versions of a query.
 
 **Pitfall 5 — `SELECT *` in a query you ship**

@@ -1,7 +1,7 @@
 # Lesson 03 — Quiz Answer Key
 
-Attempt the quiz in `lesson.md` before opening this file. **Reload
-`12-data/chinook.db` first** so the outputs match.
+Attempt the quiz in `lesson.md` before opening this file. Click **Load** and
+select `chinook.db` first so the outputs match.
 
 Expected outputs were verified against the database as shipped. Compare
 **outputs**, not query text.

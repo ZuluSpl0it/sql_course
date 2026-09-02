@@ -7,12 +7,12 @@ course rather than copying a remembered query.
 ## What you need
 
 - Complete Lessons 01–10.
-- Open [Jasper SQL Playground](https://jasperbernaers.com/sql-playground/) and
-  drag in the assessment database:
+- Open [SQL Explorer](https://sql-explorer.netlify.app/) and select the
+  assessment database from the dropdown:
 
-`12-data/northwind.db`
+`northwind.db`
 
-- Use Jasper's schema panel, `PRAGMA table_info(...)`, and
+- Use SQL Explorer's schema panel, `PRAGMA table_info(...)`, and
   `PRAGMA foreign_key_list(...)` to discover the schema. The exam deliberately
   does not provide a relationship diagram.
 
@@ -22,8 +22,8 @@ course rather than copying a remembered query.
 - The core exam is read-only. Do not modify `12-data/northwind.db`.
 - Questions 43–46 may create an index in the in-memory database:
 
-Reload `12-data/northwind.db` in Jasper before attempting those questions so the
-database starts clean.
+Click **Load** and select `northwind.db` before attempting those questions so
+the database starts clean.
 
 - After self-grading with [answers.md](answers.md), use
   [guided-solutions.md](guided-solutions.md) for the hardest problems. It is a

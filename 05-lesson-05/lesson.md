@@ -360,7 +360,7 @@ one album → one artist). No one-side value gets repeated. The rule: **don't
 
 ## 3. Practical Exercises
 
-Work in Jasper SQL Playground against `12-data/chinook.db` (this lesson only reads). Check
+Work in SQL Explorer with `chinook.db` selected (this lesson only reads). Check
 `answers_practical.md` when done.
 
 1. List the 10 tracks in alphabetical order, each with its album title.
